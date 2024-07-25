@@ -12,11 +12,18 @@ module.exports = {
         'gilroy-medium': ['Gilroy-Medium', 'sans-serif'],
         'gilroy-bold': ['Gilroy-Bold', 'sans-serif'],
         'gilroy-heavy': ['Gilroy-Heavy', 'sans-serif'],
-        poppins: ['Poppins', 'sans-serif']
+        poppins: ['Poppins', 'sans-serif'],
       },
       gridTemplateColumns: {
-        header: '1.3fr 2fr'
-      }
+        header: '1.3fr 2fr',
+      },
+    },
+    screens: {
+      xl: { max: '1200px' },
+      lg: { max: '991px' },
+      md: { max: '767px' },
+      sm: { max: '550px' },
+      xsm: { max: '375px' },
     },
   },
   plugins: [],

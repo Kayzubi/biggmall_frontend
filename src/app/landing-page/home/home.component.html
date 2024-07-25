@@ -1,0 +1,153 @@
+<header
+  class="bg-slate-100 h-full flex flex-col gap-5 px-5 relative overflow-x-hidden -top-28"
+>
+  <div class="header-gradient header-gradient-1"></div>
+  <div class="header-gradient header-gradient-2"></div>
+  <div
+    class="flex-auto grid grid-cols-header w-full mx-auto gap-5 md:flex md:flex-col md:justify-center md:gap-8"
+  >
+    <div class="flex justify-end items-center md:justify-center">
+      <div class="w-[70%] flex flex-col gap-6 md:w-[90%] md:text-center mt-40 md:mt-0" >
+        <h2 class="font-poppins font-bold text-4xl md:text-2xl mt-10">
+          Headless ecommerce for
+          <span class="text-primary">small businesses</span>
+        </h2>
+        <p>
+          Flexible commerce engine that gives small businesses the freedom to
+          innovate and grow.
+        </p>
+        <div class="header-points">
+          <p><span></span> Create</p>
+          <p><span></span> Sell</p>
+          <p><span></span> Simplify</p>
+        </div>
+
+        <a
+          routerLink="/signup"
+          pButton
+          icon="pi pi-arrow-right"
+          class="btn w-max bg-transparent border border-primary text-primary text-sm flex gap-3 flex-row-reverse px-8 h-[40px] md:mx-auto"
+          >Start Selling</a
+        >
+      </div>
+    </div>
+    <div class="flex justify-center items-end pb-10">
+      <img
+        src="assets/Bigmall Dashboard main.svg"
+        alt="Bigg mall Dashboard"
+        class=""
+      />
+    </div>
+  </div>
+</header>
+
+<section class="md:-top-10 relative">
+  <div
+    class="flex max-w-5xl mx-auto justify-around items-center gap-10 sm:gap-5 px-5"
+  >
+    <span
+      *ngFor="let chanel of paymentChannels"
+      class="flex-auto hover:scale-110 transition-all cursor-pointer"
+    >
+      <img
+        [src]="chanel.icon"
+        [alt]="chanel.name + 'icon'"
+        class="w-full max-w-28"
+      />
+    </span>
+  </div>
+</section>
+
+<section class="py-24 md:py-10">
+  <app-section-header
+    header="Maximize Your Sales Across Platforms"
+    subtext="Never miss a sale by selling on your e-Commerce website, social media, or offline. Get started with your e-Commerce store from Biggmall today!"
+  />
+  <div class="container grid grid-cols-3 py-12 gap-5 md:flex md:flex-col">
+    <app-feature-item *ngFor="let feature of features" [feature]="feature" />
+  </div>
+</section>
+
+<section class="py-24 md:py-10 bg-slate-100">
+  <div class="container grid grid-cols-2 md:flex md:flex-col md:text-center">
+    <div>
+      <img src="assets/Online shopping-pana.svg" alt="" />
+    </div>
+    <div class="flex flex-col justify-center items-start gap-8 px-5">
+      <h3 class="font-semibold text-2xl text-primary">
+        Launch Your e-Commerce Store in Just 2 Minutes!
+      </h3>
+      <P>
+        Transform your business from zero to a fully functional e-Commerce store
+        in just 2 minutes! With our intuitive platform, no coding skills are
+        required. Enjoy a seamless setup process designed for everyone, from
+        beginners to experienced entrepreneurs.
+      </P>
+      <a
+        routerLink="/signup"
+        pButton
+        icon="pi pi-arrow-right"
+        class="btn w-max bg-primary text-white text-sm flex gap-3 flex-row-reverse px-8 h-[40px] md:mx-auto"
+        >Start Selling</a
+      >
+    </div>
+  </div>
+</section>
+
+<section class="py-24 md:py-10">
+  <div class="container grid grid-cols-2 md:flex md:flex-col">
+    <div
+      class="flex flex-col justify-center items-start md:text-center gap-8 px-5"
+    >
+      <h3 class="font-semibold text-2xl text-primary">
+        Boost Your Customer Base with Facebook Pixel Integration
+      </h3>
+      <P>
+        Enhance your marketing efforts by integrating Facebook Pixel into your
+        store, enabling you to run impactful Facebook Ad Campaigns. Attract more
+        customers by crafting personalized and compelling advertisements.
+        Additionally, entice your audience with exclusive offers using custom
+        discount codes, making your promotions simply irresistible.
+      </P>
+      <a
+        routerLink="/signup"
+        pButton
+        icon="pi pi-arrow-right"
+        class="btn w-max bg-primary text-white text-sm flex gap-3 flex-row-reverse px-8 h-[40px] md:mx-auto"
+        >Start Selling</a
+      >
+    </div>
+    <div>
+      <img src="assets/Ecommerce campaign-rafiki.svg" alt="" />
+    </div>
+  </div>
+</section>
+
+<app-themes-section />
+
+<section class="py-24 md:py-10 bg-slate-100">
+  <div class="container flex flex-col-reverse text-center items-center gap-9">
+    <div class="max-w-[900px] mx-auto">
+      <img src="assets/Biggmall Dashboard.svg" alt="" />
+    </div>
+    <div class="flex flex-col justify-center gap-8 px-5">
+      <app-section-header
+        header="Manage everything from our modern dashboard"
+        subtext="Your control hub for products, customers, orders, and integrations.
+        Fast, intuitive, and contextual for the whole team."
+      />
+
+      <a
+        routerLink="/signup"
+        pButton
+        icon="pi pi-arrow-right"
+        class="btn w-max bg-primary text-white text-sm flex gap-3 flex-row-reverse px-8 h-[40px] mx-auto"
+        >Start Selling</a
+      >
+    </div>
+  </div>
+</section>
+
+<app-faq-section />
+
+

@@ -1,0 +1,39 @@
+header {
+  img {
+    z-index: 1;
+  }
+}
+
+.header-gradient {
+  position: absolute;
+  background-image: linear-gradient(to top, transparent 0%, #da5726 100%);
+  opacity: .5;
+  height: 500px;
+  width: 500px;
+  border-radius: 50%;
+}
+
+
+
+.header-gradient-1 {
+  transform: translateX(-60%);
+  @apply top-16;
+}
+
+.header-gradient-2 {
+  transform: translateX(60%);
+  @apply right-0 z-0 bottom-0 md:hidden;
+}
+
+.header-points {
+  @apply flex gap-7 text-sm md:justify-center;
+
+  p {
+    @apply flex items-center gap-2;
+
+
+    span {
+      @apply w-2 h-2 bg-primary rounded-full inline-block;
+    }
+  }
+}

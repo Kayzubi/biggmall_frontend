@@ -17,20 +17,12 @@
   }
 
   .btn {
-    @apply px-2 py-1 rounded-md
+    @apply px-2 py-1 rounded-md min-h-10 flex items-center
   }
 
-  .header-points {
-    @apply flex gap-7 text-sm;
-
-    p {
-      @apply flex items-center gap-2;
-
-
-      span {
-        @apply w-2 h-2 bg-primary rounded-full inline-block;
-      }
-    }
+  .container {
+    @apply max-w-7xl mx-auto px-5;
   }
+
 
 }

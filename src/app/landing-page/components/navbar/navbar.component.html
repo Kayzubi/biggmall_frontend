@@ -1,20 +1,53 @@
-<nav class="py-8">
-  <div class=" max-w-7xl mx-auto flex items-center justify-between">
-    <a routerLink="/" class=" w-24">
-      <img src="assets/Biggmall logo main.png" alt="biggmall logo">
+<nav class=" h-28 flex items-center justify-center bg-transparent z-10 relative">
+  <div class="max-w-7xl w-full mx-auto flex items-center justify-between">
+    <a routerLink="/" class="w-28">
+      <img src="assets/Biggmall logo main.png" alt="biggmall logo" />
     </a>
 
-    <div class=" flex gap-4 items-center font-gilroy-medium">
-      <a routerLinkActive="text-primary"  routerLink="products">Products</a>
-      <a routerLinkActive="text-primary"  routerLink="how-it-works">How it works</a>
+    <div class="flex gap-4 items-center font-medium md:hidden">
+      <a routerLinkActive="text-primary" routerLink="features">Features</a>
+      <a routerLinkActive="text-primary" routerLink="how-it-works"
+        >How it works</a
+      >
       <a routerLinkActive="text-primary" routerLink="/pricing">Resources</a>
-      <a routerLinkActive="text-primary"  routerLink="/resources">Pricing</a>
-      <a class=" text-primary font-gilroy-medium btn"   routerLink="/login">
+      <a routerLinkActive="text-primary" routerLink="/resources">Pricing</a>
+
+    </div>
+
+    <div class="flex gap-4 items-center font-medium md:hidden">
+       <a class="text-primary font-gilroy-medium btn" routerLink="/login">
         Log in
       </a>
-      <a routerLink="/signup" class=" bg-primary text-white btn">
+      <a routerLink="/signup" class="bg-primary text-white btn">
         Create Account
       </a>
     </div>
+    <p-button (onClick)="sidebarOpen = true" icon="pi pi-align-right" class=" hidden md:flex text-lg" />
   </div>
+  <p-sidebar [visible]="sidebarOpen" position="right"  #sidebarRef (onHide)="sidebarOpen = false">
+    <ng-template pTemplate="headless" class="bg-primary">
+      <span>
+        <p-button
+          type="button"
+          (onClick)="closeCallback($event)"
+          icon="pi pi-times"
+          rounded="true"
+          outlined="true"
+        ></p-button>
+      </span>
+      <a
+        pRipple
+        pStyleClass="@next"
+        enterClass="hidden"
+        enterActiveClass="slidedown"
+        leaveToClass="hidden"
+        leaveActiveClass="slideup"
+        class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple"
+      >
+        <i class="pi pi-chart-line mr-2"></i>
+        <span class="font-medium">Revenue</span>
+        <i class="pi pi-chevron-down ml-auto"></i>
+      </a>
+    </ng-template>
+  </p-sidebar>
 </nav>

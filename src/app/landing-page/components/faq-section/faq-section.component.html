@@ -1,0 +1,21 @@
+<section class="py-24 md:py-10">
+  <app-section-header header="Frequently asked questions" subtext="" />
+  <div class="container">
+    <p-accordion [activeIndex]="0" expandIcon="pi pi-plus" collapseIcon="pi pi-minus" >
+      <p-accordionTab
+        [header]="'Lorem Ipsum Dolor ' + tab"
+        *ngFor="let tab of questions"
+        headerStyleClass=" bg-transparent font-medium flex flex-row-reverse justify-between rounded-none "
+        contentStyleClass=""
+
+        tabStyleClass="border-b border-b-slate-200"
+      >
+        <p class="m-0">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos
+          similique culpa explicabo cupiditate eos quis velit odio magni minima
+          veritatis!
+        </p>
+      </p-accordionTab>
+    </p-accordion>
+  </div>
+</section>
