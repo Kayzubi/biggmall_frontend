@@ -22,8 +22,8 @@
       <p class="font-semibold">Product</p>
 
       <ul class="flex flex-col gap-7">
-        <li><a href="#">Log in</a></li>
-        <li><a href="#">Get Started</a></li>
+        <li><a routerLink="/auth/login">Log in</a></li>
+        <li><a routerLink="/auth/signup">Get Started</a></li>
       </ul>
     </div>
 
@@ -31,10 +31,10 @@
       <p class="font-semibold">Links</p>
 
       <ul class="flex flex-col gap-7">
-        <li><a href="#">Features</a></li>
-        <li><a href="#">How it works</a></li>
-        <li><a href="#">Resources</a></li>
-        <li><a href="#">Pricing</a></li>
+        <li><a routerLink="/features">Features</a></li>
+        <li><a routerLink="/how-it-works">How it works</a></li>
+        <li><a routerLink="/">Resources</a></li>
+        <li><a routerLink="/">Pricing</a></li>
       </ul>
     </div>
 
@@ -51,7 +51,7 @@
   </div>
   <div class=" flex justify-center items-center flex-auto py-6">
     <p>
-      © 2024 Biggmall. All Rights Reserved.
+      © {{ year }} Biggmall. All Rights Reserved.
     </p>
   </div>
 </footer>

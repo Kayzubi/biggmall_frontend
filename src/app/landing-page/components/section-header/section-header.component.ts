@@ -8,5 +8,6 @@ import { Component, Input } from '@angular/core';
 export class SectionHeaderComponent {
   @Input({ required: true})  header!: string
   @Input({ required: true }) subtext!: string
+  @Input() variant?: 'main' | 'white'
 
 }
