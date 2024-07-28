@@ -1,5 +1,29 @@
-<section class="py-24 md:py-10 bg-primary text-white min-h-[500px] md:min-h-max">
-  <app-section-header header="Choose From a Variety of Themes"  subtext="" variant="white"/>
-  <div class=" container">
+<section
+  class="py-24 md:py-10 bg-primary text-white"
+>
+  <app-section-header
+    header="Choose From a Variety of Themes"
+    subtext="Choose from 5 themes (Minimal, Trendy, Classic, Retro, Antique) and any color for your storefront. More customization options available in settings."
+    variant="white"
+  />
+  <div class="container flex py-10 themes">
+    <p-carousel
+      [value]="themes"
+      [numVisible]="3"
+      [numScroll]="1"
+      [circular]="true"
+      [responsiveOptions]="responsiveOptions"
+      autoplayInterval="5000"
+    >
+      <ng-template pTemplate="item" let-theme>
+        <div class="h-full px-4">
+          <img
+            src="assets/theme{{ theme }}.png"
+            alt="theme image"
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </ng-template>
+    </p-carousel>
   </div>
 </section>

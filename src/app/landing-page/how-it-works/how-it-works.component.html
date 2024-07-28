@@ -1,1 +1,17 @@
-<p>how-it-works works!</p>
+<app-page-banner title="How it works" />
+
+<section class="py-24 md:py-10">
+  <div class="container grid grid-cols-3 gap-4 md:flex md:flex-col md:gap-9">
+    <div *ngFor="let step of steps" class=" px-5 flex flex-col gap-3 items-center text-center">
+      <img src="assets/{{ step.icon }}" [alt]="step.header" />
+      <h2 class=" text-2xl text-primary font-medium flex items-center gap-4">
+        <span class=" w-8 h-8 text-lg inline-flex items-center justify-center bg-primary rounded-full text-white">{{ step.step }}</span>
+        {{ step.header }}
+      </h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim,
+        consequuntur.
+      </p>
+    </div>
+  </div>
+</section>

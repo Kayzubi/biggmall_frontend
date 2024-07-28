@@ -3,6 +3,10 @@ module.exports = {
   content: ['./src/**/*.{html,ts}'],
   theme: {
     extend: {
+      backgroundImage: {
+        'primary-gradient':
+          'linear-gradient(to top, transparent 0%, #da5726 100%)',
+      },
       colors: {
         primary: '#da5726',
         secondary: '#591F27',
