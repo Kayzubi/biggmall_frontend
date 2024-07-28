@@ -1,1 +1,69 @@
-<p>sign-up works!</p>
+<section class="h-full grid grid-cols-2 md:block">
+  <div class="flex px-6 items-center justify-center md:hidden">
+    <img src="assets/Mobile login.gif" />
+  </div>
+  <div class="bg-slate-50 flex px-5 items-center md:h-full">
+    <div class="w-full max-w-lg min-h-[70%] flex flex-col gap-6">
+      <img
+        src="assets/Biggmall logo main.png"
+        alt="Biggmall logo"
+        class="w-28"
+      />
+
+      <div class="pl-3">
+        <p class="text-gray-600">
+          Hey there!!!
+        </p>
+        <h1 class="font-semibold text-4xl">Create an account</h1>
+      </div>
+
+      <form class="pl-3 flex flex-col gap-3">
+        <app-form-input
+          label="Username"
+          description="Enter your username to sign up"
+          inputName="username"
+        >
+          <input pInputText id="username" autofocus />
+        </app-form-input>
+
+        <app-form-input
+          label="Password"
+          description="Enter your password to sign up"
+          inputName="password"
+        >
+          <p-password
+            [toggleMask]="true"
+            styleClass="w-full"
+          />
+        </app-form-input>
+
+          <app-form-input
+          label="Password"
+          description="Enter your password to sign up"
+          inputName="password"
+        >
+          <p-password
+            [toggleMask]="true"
+            [feedback]="false"
+            styleClass="w-full"
+          />
+        </app-form-input>
+
+        <button
+          pButton
+          pRipple
+          class="btn w-full h-[50px] bg-primary text-white text-lg mt-10 justify-center"
+          type="submit"
+        >
+          Create account
+        </button>
+        <p class="text-gray-600">
+          Already have an account?
+          <a routerLink="/auth/login" class="text-primary">
+            Sign in
+          </a>
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
