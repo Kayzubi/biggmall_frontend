@@ -1,4 +1,4 @@
-<section class="theme-{{ theme }} flex h-full md:flex-col ">
+<main class="theme-{{ theme }} flex h-full md:flex-col ">
   <div class="siderbar w-[15%] bg-card border-r border-border md:hidden">sidebar</div>
   <div class="flex-auto p-5 flex flex-col gap-5">
     <nav class="flex gap-3 justify-end items-center py-2">
@@ -31,8 +31,8 @@
       <ng-icon name="ionHelpCircleOutline" size="18px" />
       <p-avatar label="V" styleClass="bg-primary text-white" shape="circle" />
     </nav>
-    <div class="flex-auto">
+    <section class="flex-auto flex flex-col gap-5 overflow-auto">
       <router-outlet />
-    </div>
+    </section>
   </div>
-</section>
+</main>

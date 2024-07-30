@@ -18,6 +18,7 @@ import {
 import { AvatarModule } from 'primeng/avatar';
 import { BadgeModule } from 'primeng/badge';
 import { SplitButtonModule } from 'primeng/splitbutton';
+import { ChartModule } from 'primeng/chart';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
@@ -31,6 +32,8 @@ import { StorefrontComponent } from './storefront/storefront.component';
 import { SettingsComponent } from './settings/settings.component';
 import { StatItemComponent } from './components/stat-item/stat-item.component';
 import { SharedUIModule } from '../shared/shared-ui.module';
+import { ProductItemStatComponent } from './components/product-item-stat/product-item-stat.component';
+import { OrderItemSmallComponent } from './components/order-item-small/order-item-small.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +47,8 @@ import { SharedUIModule } from '../shared/shared-ui.module';
     StorefrontComponent,
     SettingsComponent,
     StatItemComponent,
+    ProductItemStatComponent,
+    OrderItemSmallComponent,
   ],
   imports: [
     CommonModule,
@@ -62,7 +67,8 @@ import { SharedUIModule } from '../shared/shared-ui.module';
     NgSwitch,
     NgSwitchCase,
     NgSwitchDefault,
-    SharedUIModule
+    SharedUIModule,
+    ChartModule
   ],
 })
 export class DashboardModule {}
