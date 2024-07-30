@@ -8,8 +8,13 @@ module.exports = {
           'linear-gradient(to top, transparent 0%, #da5726 100%)',
       },
       colors: {
+        white: '#FDFDFD',
         primary: '#da5726',
         secondary: '#591F27',
+        background: 'var(--background)',
+        card: 'var(--card)',
+        border: 'var(--border)',
+        text: 'var(--text)',
       },
       fontFamily: {
         'gilroy-regular': ['Gilroy-Regular', 'sans-serif'],

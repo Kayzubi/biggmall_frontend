@@ -10,6 +10,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 
+:root {
+  --background: #F9FAFB;
+  --card: #ffffff;
+  --border: #E0E7EF;
+  --text: #000000;
+
+}
+
+
+
+.theme-light {
+  background: var(--background);
+  color: #000000;
+}
+
+.theme-dark-blue {
+  --background: #081B33;
+  --card: #152642;
+  --border: #2F4562;
+  --text: #FDFDFD;
+
+  background: var(--background);
+  color: var(--text);
+
+}
+
+.theme-dark {
+  --background: #292929;
+  --card: #3d3d3d;
+  --border: #656565;
+  --text: #FDFDFD;
+
+  background: var(--background);
+  color: var(--text);
+}
+
 @layer utilities {
 
   body {
