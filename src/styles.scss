@@ -16,6 +16,7 @@
   --border: #E0E7EF;
   --text: #000000;
 
+  --animate-duration: 1000ms;
 
 
 }
@@ -55,10 +56,8 @@
   }
 
   .btn {
-    @apply px-2 py-1 rounded-md min-h-10 flex items-center
+    @apply px-2 py-1 rounded-md min-h-10 flex items-center text-sm sm:px-1 sm:py-1;
   }
-
-
 
   .container {
     @apply max-w-7xl mx-auto px-5;

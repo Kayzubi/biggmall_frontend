@@ -1,0 +1,32 @@
+<div class="flex flex-col gap-5 h-full">
+  <img
+    src="assets/Biggmall logo main.png"
+    alt="Biggmall logo"
+    class="w-28 mx-auto"
+  />
+
+  <div class="flex gap-3 items-center justify-center">
+    <ng-icon name="ionStorefrontOutline" size="18px" />
+    <p>Lethers by fayy</p>
+  </div>
+
+  <div class="flex flex-col mt-5">
+    <a
+      *ngFor="let link of navlinks"
+      [routerLink]="link.routerLink"
+      [routerLinkActiveOptions]="link.routerLinkActiveOptions"
+      routerLinkActive="bg-primary text-white"
+      class="flex items-center gap-3 py-3 rounded-md px-4"
+      pRipple
+    >
+      <ng-icon [name]="link.icon" size="18px" />
+      {{ link.label }}
+    </a>
+  </div>
+  <div class="mt-auto">
+    <app-button type="button" styleClass="w-full flex items-center gap-4 text-red-600">
+      <ng-icon name="ionLogOutOutline" size="18px" />
+      Logout
+    </app-button>
+  </div>
+</div>

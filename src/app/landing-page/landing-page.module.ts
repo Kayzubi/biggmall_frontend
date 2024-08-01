@@ -1,15 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgIconsModule } from '@ng-icons/core';
 import { AccordionModule } from 'primeng/accordion';
-import {
-  ionArchiveOutline,
-  ionTimeOutline,
-  ionAnalyticsOutline,
-  ionLogoInstagram,
-  ionLogoTwitter,
-  ionLogoYoutube
-} from '@ng-icons/ionicons';
+import { AnimateOnScrollModule } from 'primeng/animateonscroll';
+
 
 import { LandingPageRoutingModule } from './landing-page-routing.module';
 import { LandingPageComponent } from './landing-page.component';
@@ -43,15 +36,8 @@ import { PageBannerComponent } from './components/page-banner/page-banner.compon
     CommonModule,
     LandingPageRoutingModule,
     SharedUIModule,
-    NgIconsModule.withIcons({
-      ionArchiveOutline,
-      ionAnalyticsOutline,
-      ionTimeOutline,
-      ionLogoInstagram,
-      ionLogoTwitter,
-      ionLogoYoutube,
-    }),
     AccordionModule,
+    AnimateOnScrollModule,
   ],
 })
 export class LandingPageModule {}

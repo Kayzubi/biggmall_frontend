@@ -1,0 +1,51 @@
+<app-page-header header="Orders" />
+<app-card>
+  <app-table
+    [headers]="['Order Id', 'Customer name', 'Date', 'Status', 'Total Amount']"
+  >
+    <div class="flex items-center justify-between bg-card py-4" caption>
+      <div>
+        <input type="text" placeholder="Search order" />
+      </div>
+      <app-button
+        type="button"
+        label="Create Order"
+        icon="ionAddOutline"
+        styleClass="font-normal text-primary gap-1 flex-row-reverse"
+        route="/dashboard/orders/create"
+      />
+    </div>
+    <div body>
+      <div
+        class="grid grid-cols-5 p-4 text-xs cursor-pointer hover:bg-background"
+        (click)="goToOrderDetails()"
+      >
+        <div>#QWE1GH</div>
+        <div>Kizito Azubuike</div>
+        <div>24/01/2023 &commat; 8:21am </div>
+        <div>Paid</div>
+        <div>#24,000</div>
+      </div>
+      <div
+        class="grid grid-cols-5 p-4 text-xs cursor-pointer hover:bg-background"
+        (click)="goToOrderDetails()"
+      >
+        <div>#QWE1GH</div>
+        <div>Kizito Azubuike</div>
+        <div>24/01/2023 &commat; 8:21am </div>
+        <div>Paid</div>
+        <div>#24,000</div>
+      </div>
+           <div
+        class="grid grid-cols-5 p-4 text-xs cursor-pointer hover:bg-background"
+        (click)="goToOrderDetails()"
+      >
+        <div>#QWE1GH</div>
+        <div>Kizito Azubuike</div>
+        <div>24/01/2023 &commat; 8:21am </div>
+        <div>Paid</div>
+        <div>#24,000</div>
+      </div>
+    </div>
+  </app-table>
+</app-card>

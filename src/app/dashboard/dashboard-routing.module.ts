@@ -7,6 +7,10 @@ import { CustomersComponent } from './customers/customers.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { DiscountsComponent } from './discounts/discounts.component';
 import { StorefrontComponent } from './storefront/storefront.component';
+import { InventoryComponent } from './inventory/inventory.component';
+import { CreateOrderComponent } from './orders/create-order/create-order.component';
+import { OrderDetailsComponent } from './orders/order-details/order-details.component';
+import { AllOrdersComponent } from './orders/all-orders/all-orders.component';
 
 const routes: Routes = [
   {
@@ -20,6 +24,26 @@ const routes: Routes = [
       {
         path: 'orders',
         component: OrdersComponent,
+        title: 'Orders',
+        children: [
+          {
+            path: '',
+            component: AllOrdersComponent,
+          },
+          {
+            path: 'create',
+            component: CreateOrderComponent,
+          },
+          {
+            path: 'details',
+            component: OrderDetailsComponent,
+          },
+        ],
+      },
+
+      {
+        path: 'products',
+        component: InventoryComponent,
       },
       {
         path: 'customers',
@@ -34,7 +58,7 @@ const routes: Routes = [
         component: DiscountsComponent,
       },
       {
-        path: 'storefront',
+        path: 'store',
         component: StorefrontComponent,
       },
     ],

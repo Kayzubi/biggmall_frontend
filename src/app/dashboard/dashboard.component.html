@@ -1,37 +1,47 @@
-<main class="theme-{{ theme }} flex h-full md:flex-col ">
-  <div class="siderbar w-[15%] bg-card border-r border-border md:hidden">sidebar</div>
+<main class="theme-{{ theme }} flex h-full md:flex-col overflow-auto ">
+  <div class="siderbar w-[15%] bg-card border-r border-border md:hidden py-5">
+    <app-sidebar />
+  </div>
   <div class="flex-auto p-5 flex flex-col gap-5">
     <nav class="flex gap-3 justify-end items-center py-2">
-      <p-splitButton
-        styleClass="flex items-center"
-        menuStyleClass=" bg-card border border-border text-text"
-        iconPos="left"
-        [model]="themeOptions"
-      >
-      <ng-template pTemplate="content" [ngSwitch]="theme">
-        <ng-icon
+      <span>
+        <p-button (onClick)="themes.toggle($event)">
+          <ng-template pTemplate="content" [ngSwitch]="theme">
+            <ng-icon
               *ngSwitchCase="'light'"
               name="ionSunnyOutline"
               size="18px"
+              class="text-primary"
             />
             <ng-icon
               *ngSwitchCase="'dark'"
               name="ionMoon"
               size="18px"
+              class="text-primary"
             />
             <ng-icon
               *ngSwitchCase="'dark-blue'"
               name="ionMoonOutline"
               size="18px"
+              class="text-primary"
             />
-      </ng-template>
-      </p-splitButton>
+          </ng-template>
+        </p-button>
+        <p-tieredMenu
+          [model]="themeOptions"
+          #themes
+          [popup]="true"
+          styleClass="bg-background text-text"
+
+        />
+      </span>
+
       <ng-icon name="ionNotificationsOutline" size="18px" />
       <ng-icon name="ionSettingsOutline" size="18px" />
       <ng-icon name="ionHelpCircleOutline" size="18px" />
       <p-avatar label="V" styleClass="bg-primary text-white" shape="circle" />
     </nav>
-    <section class="flex-auto flex flex-col gap-5 overflow-auto">
+    <section class="flex-auto overflow-auto">
       <router-outlet />
     </section>
   </div>

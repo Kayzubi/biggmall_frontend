@@ -5,20 +5,10 @@ import {
   NgSwitchCase,
   NgSwitchDefault,
 } from '@angular/common';
-
-import { NgIconsModule } from '@ng-icons/core';
-import {
-  ionNotificationsOutline,
-  ionSettingsOutline,
-  ionHelpCircleOutline,
-  ionSunnyOutline,
-  ionMoonOutline,
-  ionMoon,
-} from '@ng-icons/ionicons';
 import { AvatarModule } from 'primeng/avatar';
 import { BadgeModule } from 'primeng/badge';
-import { SplitButtonModule } from 'primeng/splitbutton';
 import { ChartModule } from 'primeng/chart';
+import { TableModule } from 'primeng/table';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
@@ -34,6 +24,11 @@ import { StatItemComponent } from './components/stat-item/stat-item.component';
 import { SharedUIModule } from '../shared/shared-ui.module';
 import { ProductItemStatComponent } from './components/product-item-stat/product-item-stat.component';
 import { OrderItemSmallComponent } from './components/order-item-small/order-item-small.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { CreateOrderComponent } from './orders/create-order/create-order.component';
+import { PageHeaderComponent } from './components/page-header/page-header.component';
+import { OrderDetailsComponent } from './orders/order-details/order-details.component';
+import { AllOrdersComponent } from './orders/all-orders/all-orders.component';
 
 @NgModule({
   declarations: [
@@ -49,26 +44,23 @@ import { OrderItemSmallComponent } from './components/order-item-small/order-ite
     StatItemComponent,
     ProductItemStatComponent,
     OrderItemSmallComponent,
+    SidebarComponent,
+    CreateOrderComponent,
+    PageHeaderComponent,
+    OrderDetailsComponent,
+    AllOrdersComponent,
   ],
   imports: [
     CommonModule,
     AvatarModule,
     BadgeModule,
     DashboardRoutingModule,
-    NgIconsModule.withIcons({
-      ionHelpCircleOutline,
-      ionNotificationsOutline,
-      ionSunnyOutline,
-      ionMoonOutline,
-      ionMoon,
-      ionSettingsOutline,
-    }),
-    SplitButtonModule,
     NgSwitch,
     NgSwitchCase,
     NgSwitchDefault,
     SharedUIModule,
-    ChartModule
+    ChartModule,
+    TableModule
   ],
 })
 export class DashboardModule {}

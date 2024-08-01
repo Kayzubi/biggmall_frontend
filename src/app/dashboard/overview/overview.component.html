@@ -1,56 +1,59 @@
-  <section class="grid grid-cols-4 md:grid-cols-2 gap-6 sm:gap-3">
-    <app-stat-item />
-    <app-stat-item />
-    <app-stat-item />
-    <app-stat-item />
-  </section>
-  <section class=" h-[400px] md:h-auto flex md:flex-col gap-5 items-center mt-5">
-    <div class=" w-[60%] md:w-full h-full md:h-[300px] ">
-      <app-card>
-        <h2 class=" font-semibold text-lg">Sales Analytics</h2>
-        <p-chart type="line" [data]="data" height="90%" width="100%" />
-      </app-card>
-    </div>
-    <div class=" flex-auto h-full md:w-full md:h-[400px]">
-      <app-card>
-        <div>
-          <h2 class=" font-semibold text-lg">Recent Orders</h2>
-          <div class="mt-5">
-            <div class=" grid grid-cols-3">
-              <div class=""><p class="font-medium">Name</p></div>
-              <div class=""><p class="font-medium">Status</p></div>
-              <div class=""><p class="font-medium">Amount</p></div>
-            </div>
-            <div class=" flex flex-col gap-3">
-              <app-order-item-small />
-              <app-order-item-small />
-              <app-order-item-small />
-              <app-order-item-small />
-            </div>
-            <div class=" flex items-center justify-center">
-              <a routerLink="/dashboard" class=" underline text-primary"> View All </a>
-            </div>
+<app-page-header header="Overview" />
+
+<section class="grid grid-cols-4 md:grid-cols-2 gap-6 sm:gap-3">
+  <app-stat-item />
+  <app-stat-item />
+  <app-stat-item />
+  <app-stat-item />
+</section>
+<section class="h-[400px] md:h-auto flex md:flex-col gap-5 items-center mt-5">
+  <div class="w-[60%] md:w-full h-full md:h-[300px]">
+    <app-card>
+      <h2 class="font-semibold text-lg">Sales Analytics</h2>
+      <p-chart type="line" [data]="data" height="90%" width="100%" />
+    </app-card>
+  </div>
+  <div class="flex-auto h-full md:w-full md:h-[400px]">
+    <app-card>
+      <div>
+        <h2 class="font-semibold text-lg">Recent Orders</h2>
+        <div class="mt-5">
+          <div class="grid grid-cols-3">
+            <div class=""><p class="font-medium">Name</p></div>
+            <div class=""><p class="font-medium">Status</p></div>
+            <div class=""><p class="font-medium">Amount</p></div>
+          </div>
+          <div class="flex flex-col gap-3">
+            <app-order-item-small />
+            <app-order-item-small />
+            <app-order-item-small />
+            <app-order-item-small />
+          </div>
+          <div class="flex items-center justify-center">
+            <a routerLink="/dashboard" class="underline text-primary">
+              View All
+            </a>
           </div>
         </div>
-        </app-card>
+      </div>
+    </app-card>
+  </div>
+</section>
+<section class="mt-5 grid grid-cols-3 gap-6 md:flex md:flex-col">
+  <app-card>
+    <h2 class="font-semibold text-lg">Top Selling Products</h2>
+    <div class="flex flex-col gap-4 mt-5">
+      <app-product-item-stat />
+      <app-product-item-stat />
+      <app-product-item-stat />
+      <app-product-item-stat />
+      <app-product-item-stat />
     </div>
-  </section>
-  <section class="mt-5 grid grid-cols-3 gap-6 md:flex md:flex-col">
-    <app-card>
-          <h2 class=" font-semibold text-lg">Top Selling Products</h2>
-       <div class=" flex flex-col gap-4 mt-5">
-            <app-product-item-stat />
-            <app-product-item-stat />
-            <app-product-item-stat />
-            <app-product-item-stat />
-            <app-product-item-stat />
-          </div>
-    </app-card>
-        <app-card>
-          <h2 class=" font-semibold text-lg">Top Customers</h2>
-
-    </app-card>
-        <app-card>
-          <h2 class=" font-semibold text-lg">Notifications</h2>
-    </app-card>
-  </section>
+  </app-card>
+  <app-card>
+    <h2 class="font-semibold text-lg">Top Customers</h2>
+  </app-card>
+  <app-card>
+    <h2 class="font-semibold text-lg">Notifications</h2>
+  </app-card>
+</section>
