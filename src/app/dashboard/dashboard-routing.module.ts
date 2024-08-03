@@ -11,6 +11,8 @@ import { InventoryComponent } from './inventory/inventory.component';
 import { CreateOrderComponent } from './orders/create-order/create-order.component';
 import { OrderDetailsComponent } from './orders/order-details/order-details.component';
 import { AllOrdersComponent } from './orders/all-orders/all-orders.component';
+import { inventoryRoutes } from './inventory/inventory.constants';
+import { orderRoutes } from './orders/orders.constants';
 
 const routes: Routes = [
   {
@@ -25,25 +27,13 @@ const routes: Routes = [
         path: 'orders',
         component: OrdersComponent,
         title: 'Orders',
-        children: [
-          {
-            path: '',
-            component: AllOrdersComponent,
-          },
-          {
-            path: 'create',
-            component: CreateOrderComponent,
-          },
-          {
-            path: 'details',
-            component: OrderDetailsComponent,
-          },
-        ],
+        children: orderRoutes
       },
 
       {
         path: 'products',
         component: InventoryComponent,
+        children: inventoryRoutes
       },
       {
         path: 'customers',

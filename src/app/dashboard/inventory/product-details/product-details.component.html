@@ -1,0 +1,273 @@
+<app-page-header [showBackButton]="true" header="NFC Business Card" />
+<section class="flex gap-5 md:flex-col px-7 sm:px-0">
+  <div class="w-[60%] md:w-full flex flex-col gap-5">
+    <div class="min-h-[400px]">
+      <app-card>
+        <h3 class="font-medium text-lg">Product details</h3>
+        <div class="flex flex-col gap-4">
+          <app-form-input
+            label="Product name"
+            inputName="name"
+            description="Enter the name of your product"
+          >
+            <input pInputText id="name" />
+          </app-form-input>
+          <app-form-input
+            label="Product description"
+            inputName="name"
+            description="Briefly describe your product"
+          >
+            <textarea
+              rows="5"
+              cols="30"
+              class="p-3"
+              pInputTextarea
+              [autoResize]="true"
+            ></textarea>
+          </app-form-input>
+          <p-dropdown
+            styleClass=" w-full border border-border bg-transparent"
+            panelStyleClass="bg-background text-text"
+            [options]="[]"
+            optionLabel="name"
+            placeholder="Select a Category"
+          />
+        </div>
+      </app-card>
+    </div>
+
+    <app-card>
+      <h3 class="font-medium text-lg">Pricing</h3>
+
+      <app-form-input label="Product Price" inputName="price">
+        <p-inputNumber
+          [min]="0"
+          inputId="price"
+          mode="currency"
+          class="w-full"
+          currency="NGN"
+          styleClass=" w-full"
+          locale="en-US"
+        />
+      </app-form-input>
+      <div class="flex gap-5 py-3 items-center mt-4 px-3">
+        <p class="text-sm">On Sale?</p>
+        <p-inputSwitch
+          styleClass="focus-visible:shadow-none focus-within:shadow-none"
+          [(ngModel)]="onSale"
+        />
+      </div>
+      <app-form-input *ngIf="onSale" label="Sale Price" inputName="price">
+        <p-inputNumber
+          [min]="0"
+          inputId="price"
+          mode="currency"
+          class="w-full"
+          currency="NGN"
+          styleClass=" w-full"
+          locale="en-US"
+        />
+      </app-form-input>
+    </app-card>
+    <app-card>
+      <h3 class="font-medium text-lg">Product Media</h3>
+      <div>
+        <p-fileUpload
+          name="images"
+          [multiple]="true"
+          accept="image/*"
+          maxFileSize="1000000"
+          styleClass="bg-transparent"
+        >
+          <ng-template
+            pTemplate="header"
+            let-chooseCallback="chooseCallback"
+            let-clearCallback="clearCallback"
+          >
+            <div class="flex py-1 gap-3">
+              <app-button
+                (onClick)="chooseCallback()"
+                styleClass="border border-primary text-primary w-8 h-8 items-center justify-center hover:bg-primary hover:text-white"
+                icon="ionCloudUploadOutline"
+                variant="round"
+                size="normal"
+              />
+              <app-button
+                styleClass="border border-red-400 text-red-400 w-8 h-8 items-center justify-center hover:bg-red-400 hover:text-white"
+                icon="ionCloseOutline"
+                variant="round"
+                size="normal"
+                (onClick)="clearCallback()"
+              />
+            </div>
+          </ng-template>
+          <ng-template pTemplate="content" let-files>
+            <div *ngIf="files?.length > 0">
+              <div class="flex flex-wrap p-0 sm:p-5 gap-5">
+                <div
+                  *ngFor="let file of files; let i = index"
+                  class="border border-border px-3 py-2 flex flex-col items-center justify-between gap-3"
+                >
+                  <div>
+                    <img
+                      role="presentation"
+                      [alt]="file.name"
+                      [src]="file.objectURL"
+                      width="100"
+                      height="50"
+                    />
+                  </div>
+                  <span class="text-sm">{{ file.name }}</span>
+                  <app-button
+                    styleClass="border border-red-700 text-red-700 w-8 h-8 items-center mt-auto"
+                    icon="ionCloseOutline"
+                    variant="round"
+                    size="normal"
+                  />
+                </div>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="file"> </ng-template>
+          <ng-template pTemplate="empty">
+            <div class="flex items-center justify-center flex-col">
+              <i
+                class="pi pi-cloud-upload border border-primary text-primary p-5 text-5xl rounded-full"
+              ></i>
+              <p class="mt-4 mb-0 text-primary text-sm">
+                Drag and drop files here to upload.
+              </p>
+              <p class="mt-2 mb-0 text-primary text-xs">
+                JPEG, JPG, PNG. Maximum size 1MB
+              </p>
+            </div>
+          </ng-template>
+        </p-fileUpload>
+      </div>
+    </app-card>
+  </div>
+  <div class="flex-auto flex flex-col gap-5 px-5 md:px-0">
+    <div class="min-h-[200px] md:min-h-max">
+      <app-card>
+        <h3 class="font-medium text-lg">Inventory details</h3>
+
+        <div class="flex items-center gap-5 py-5">
+          <p>Available Quantity:</p>
+
+          <p-inputNumber
+            [min]="0"
+            inputId="quantity"
+            class="flex-auto border border-border h-10 rounded-md"
+            styleClass=" w-full px-2"
+          />
+        </div>
+
+        <div class="flex gap-5 py-3 items-center">
+          <p class="text-sm mb-1">Has Variants?</p>
+          <p-inputSwitch [(ngModel)]="hasVariants" />
+        </div>
+        <div *ngIf="hasVariants" class="py-3">
+          <span class="flex items-center justify-between px-2">
+            <p class="font-medium">Variants</p>
+            <app-button
+              label="Add"
+              icon="ionAddOutline"
+              styleClass="text-primary gap-1 flex-row-reverse"
+              (onClick)="toggleModal(true)"
+            />
+          </span>
+          <div class=" mt-5 ">
+            <div class=" rounded-lg border border-border flex flex-col overflow-hidden">
+              <span class=" bg-primary-light p-2 flex justify-between items-center ">
+                <small class="uppercase">Group name</small><small class="uppercase">Options</small>
+              </span>
+              <span class=" flex justify-between items-center gap-3 p-3">
+                <p class=" flex-auto truncate text-xs">Base Surface</p>
+              <small class=" flex-auto truncate flex justify-end">
+                PVC,Bamboo,Beech,Cherry,White,Black
+              </small>
+
+              </span>
+
+            </div>
+
+          </div>
+        </div>
+      </app-card>
+    </div>
+    <div>
+      <app-card>
+        <app-button
+          label="Save"
+          styleClass="btn-primary w-full h-11 justify-center"
+          size="normal"
+        />
+        <div class="flex gap-5 py-3 items-center mt-4 px-3">
+          <p-inputSwitch
+            styleClass="focus-visible:shadow-none focus-within:shadow-none "
+          />
+          <p class="text-sm mb-1">Active</p>
+        </div>
+        <div></div>
+      </app-card>
+    </div>
+  </div>
+</section>
+
+<app-popup
+  [visible]="showModal"
+  (showModal)="toggleModal($event)"
+  position="top"
+>
+  <div class="flex-auto" heading>
+    <h2 class="font-medium">Add a Variant</h2>
+  </div>
+  <div class="px-5 flex flex-col gap-4">
+    <app-form-input
+      label="Group name"
+      inputName="name"
+      description="Enter a group name for your variant. (e.g. size, color)"
+    >
+      <input pInputText id="name" class="text-sm" />
+    </app-form-input>
+
+    <p class="font-medium text-primary">Options:</p>
+    <div class=" flex flex-wrap items-center gap-2">
+      <p-chip label="PVC" [removable]="true" styleClass=" bg-primary text-white text-xs" />
+      <p-chip label="Bamboo" [removable]="true" styleClass=" bg-primary text-white text-xs" />
+    </div>
+
+    <div class="flex items-center justify-between gap-5">
+      <app-form-input label="Option name" inputName="name" class="flex-auto">
+        <input pInputText id="name" class="text-sm" />
+      </app-form-input>
+      <app-form-input label="Quantity" inputName="quantity">
+        <input type="number" />
+      </app-form-input>
+    </div>
+    <div class="flex items-center justify-end">
+      <app-button
+      label="Add Option"
+      styleClass="flex-row-reverse gap-1 justify-center text-primary"
+      size="normal"
+      icon="ionAddOutline"
+      (onClick)="toggleModal(false)"
+    />
+    </div>
+
+  </div>
+  <div footer class="flex justify-end gap-4 items-center py-2 mt-5">
+    <app-button
+      label="Cancel"
+      styleClass="  h-8 w-14 justify-center text-red-400"
+      size="normal"
+      (onClick)="toggleModal(false)"
+    />
+    <app-button
+      label="Save"
+      styleClass="btn-primary h-8 w-14 justify-center"
+      size="normal"
+      (onClick)="toggleModal(false)"
+    />
+  </div>
+</app-popup>

@@ -1,0 +1,39 @@
+<app-page-header header="Products" />
+<app-card>
+  <app-table [headers]="['Product', 'Stock', 'Price', 'Variants', ' ']">
+    <div class="flex items-center justify-between bg-card py-4" caption>
+      <div>
+        <input type="text" placeholder="Search order" />
+      </div>
+      <app-button
+        type="button"
+        label="Add New Product"
+        icon="ionAddOutline"
+        styleClass="font-normal btn-primary gap-1 flex-row-reverse"
+        route="/dashboard/products/add"
+      />
+    </div>
+    <div body>
+      <div
+      *ngFor="let product of products"
+        class="grid grid-cols-5 p-4 text-xs cursor-pointer hover:bg-background"
+      >
+        <div class="flex items-center gap-3">
+          <span
+            class="w-10 h-10 bg-gray-100 rounded-md flex items-center"
+          ></span>
+          <p>Snap Card - {{ product }}</p>
+        </div>
+        <div class="flex items-center">100</div>
+        <div class="flex items-center">#24, 000</div>
+        <div class="flex items-center">2</div>
+        <div class="flex items-center">
+          <a pButton routerLink="/dashboard/products/id" class="text-xs btn-primary-outline p-2 flex items-center gap-1" >
+            <ng-icon name="ionPencilOutline" />
+            Edit
+          </a>
+        </div>
+      </div>
+    </div>
+  </app-table>
+</app-card>

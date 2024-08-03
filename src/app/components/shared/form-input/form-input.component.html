@@ -2,9 +2,9 @@
 <div class="flex flex-col gap-2 pt-6">
     <p-floatLabel>
         <ng-content />
-        <label [for]="inputName">{{ label }}</label>
+        <label [for]="inputName" class="text-sm">{{ label }}</label>
     </p-floatLabel>
-    <small *ngIf="description">
+    <small *ngIf="description" class=" text-gray-500">
       {{ description }}
     </small>
 </div>

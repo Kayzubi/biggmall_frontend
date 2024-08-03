@@ -8,6 +8,7 @@ import { TieredMenuModule } from 'primeng/tieredmenu';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { ButtonComponent } from '../components/button/button.component';
 import { NgIconsModule } from '@ng-icons/core';
+import { ChipModule } from 'primeng/chip';
 import {
   ionArchiveOutline,
   ionTimeOutline,
@@ -31,13 +32,26 @@ import {
   ionTrendingUpOutline,
   ionLogOutOutline,
   ionAddOutline,
-  ionArrowBackOutline
+  ionArrowBackOutline,
+  ionPencilOutline,
+  ionCloudUploadOutline,
+  ionImagesOutline,
+  ionCloseOutline
+
 } from '@ng-icons/ionicons';
 import { TableComponent } from '../components/table/table.component';
+import { DialogModule } from 'primeng/dialog';
+import { PopupComponent } from '../components/popup/popup.component';
+
 
 
 @NgModule({
-  declarations: [CardComponent, ButtonComponent, TableComponent],
+  declarations: [
+    CardComponent,
+    ButtonComponent,
+    TableComponent,
+    PopupComponent,
+  ],
   imports: [
     ButtonModule,
     RippleModule,
@@ -66,8 +80,13 @@ import { TableComponent } from '../components/table/table.component';
       ionLogoTwitter,
       ionLogoYoutube,
       ionAddOutline,
-      ionArrowBackOutline
+      ionArrowBackOutline,
+      ionPencilOutline,
+      ionCloudUploadOutline,
+      ionImagesOutline,
+      ionCloseOutline,
     }),
+    DialogModule,
   ],
   exports: [
     ButtonModule,
@@ -79,7 +98,10 @@ import { TableComponent } from '../components/table/table.component';
     PanelMenuModule,
     ButtonComponent,
     NgIconsModule,
-    TableComponent
+    DialogModule,
+    TableComponent,
+    PopupComponent,
+    ChipModule
   ],
 })
 export class SharedUIModule {}

@@ -7,7 +7,9 @@ import { Router } from '@angular/router';
   styleUrl: './button.component.scss',
 })
 export class ButtonComponent {
-  @Input({ required: true}) type!: 'submit' | 'reset' | 'button'
+  @Input() type: 'submit' | 'reset' | 'button' = 'button'
+  @Input() variant: 'round' | 'main' = 'main'
+  @Input() size: 'large' | 'medium' | 'normal' | 'extralarge' = 'normal'
   @Input() label?: string;
   @Input() styleClass?: string;
   @Input() icon?: string

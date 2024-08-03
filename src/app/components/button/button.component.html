@@ -1,4 +1,20 @@
-<button [type]="type" pButton pRipple [class]="'btn focus-visible:shadow-none focus-within:shadow-none ' + styleClass" (click)="handleClick($event)">
+<button
+  pButton
+  pRipple
+  [type]="type"
+  (click)="handleClick($event)"
+  [class]="
+    'flex p-2 items-center focus-visible:shadow-none focus-within:shadow-none ' +
+    styleClass
+  "
+  [class.text-xs]="size === 'normal'"
+  [class.text-xl]="size === 'large'"
+  [class.text-lg]="size === 'medium'"
+  [class.text-3xl]="size === 'extralarge'"
+  [rounded]="variant === 'round'"
+  [class.rounded-md]="variant === 'main'"
+
+>
   <span *ngIf="label">{{ label }}</span>
   <ng-icon *ngIf="icon" [name]="icon" />
   <ng-content />

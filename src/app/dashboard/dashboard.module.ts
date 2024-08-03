@@ -29,6 +29,11 @@ import { CreateOrderComponent } from './orders/create-order/create-order.compone
 import { PageHeaderComponent } from './components/page-header/page-header.component';
 import { OrderDetailsComponent } from './orders/order-details/order-details.component';
 import { AllOrdersComponent } from './orders/all-orders/all-orders.component';
+import { AddProductComponent } from './inventory/add-product/add-product.component';
+import { EditProductComponent } from './inventory/edit-product/edit-product.component';
+import { ProductDetailsComponent } from './inventory/product-details/product-details.component';
+import { ProductOverviewComponent } from './inventory/product-overview/product-overview.component';
+import { SharedFormModule } from "../shared/shared-form.module";
 
 @NgModule({
   declarations: [
@@ -49,6 +54,10 @@ import { AllOrdersComponent } from './orders/all-orders/all-orders.component';
     PageHeaderComponent,
     OrderDetailsComponent,
     AllOrdersComponent,
+    AddProductComponent,
+    EditProductComponent,
+    ProductDetailsComponent,
+    ProductOverviewComponent,
   ],
   imports: [
     CommonModule,
@@ -60,7 +69,9 @@ import { AllOrdersComponent } from './orders/all-orders/all-orders.component';
     NgSwitchDefault,
     SharedUIModule,
     ChartModule,
-    TableModule
-  ],
+    TableModule,
+    SharedFormModule,
+
+],
 })
 export class DashboardModule {}

@@ -10,6 +10,8 @@ module.exports = {
       colors: {
         white: '#FDFDFD',
         primary: '#da5726',
+        'primary-light': '#eeb283',
+        'primary-dark': '#ae3f20',
         secondary: '#591F27',
         background: 'var(--background)',
         card: 'var(--card)',

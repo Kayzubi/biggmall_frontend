@@ -17,9 +17,8 @@
   --text: #000000;
 
   --animate-duration: 1000ms;
-
-
 }
+
 
 
 
@@ -51,6 +50,10 @@
 
 @layer utilities {
 
+  p {
+    @apply text-sm;
+  }
+
   body {
     @apply font-poppins text-sm
   }
@@ -59,9 +62,43 @@
     @apply px-2 py-1 rounded-md min-h-10 flex items-center text-sm sm:px-1 sm:py-1;
   }
 
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary-dark;
+  }
+
+  .btn-primary-outline {
+    @apply bg-transparent border border-primary text-primary hover:text-white hover:bg-primary
+  }
+
   .container {
     @apply max-w-7xl mx-auto px-5;
   }
-
-
 }
+
+input, textarea {
+  @apply focus-visible:shadow-none focus-within:shadow-none bg-transparent;
+}
+
+ .p-fileupload-buttonbar {
+   background: transparent
+ }
+
+ .p-fileupload-content {
+   background: transparent;
+   border: 1px dotted #da5726;
+   min-height: 300px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+ }
+
+ .p-inputswitch-slider{
+  @apply bg-background border border-border focus-visible:shadow-none focus-within:shadow-none;
+ }
+
+ .p-inputswitch-checked {
+    .p-inputswitch-slider {
+      @apply bg-primary;
+    }
+ }
