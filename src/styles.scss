@@ -13,7 +13,7 @@
 :root {
   --background: #F9FAFB;
   --card: #ffffff;
-  --border: #E0E7EF;
+  --border: #d7d8da;
   --text: #000000;
 
   --animate-duration: 1000ms;
@@ -75,8 +75,18 @@
   }
 }
 
+label, .p-dropdown-label, .p-dropdown-empty-message, .p-dropdown-items, .p-menuitem-text {
+  @apply text-text text-sm;
+}
+
+.p-menuitem-content {
+  @apply hover:bg-card
+}
+
+
+
 input, textarea {
-  @apply focus-visible:shadow-none focus-within:shadow-none bg-transparent;
+  @apply focus-visible:shadow-none text-sm focus-within:shadow-none bg-transparent text-text;
 }
 
  .p-fileupload-buttonbar {

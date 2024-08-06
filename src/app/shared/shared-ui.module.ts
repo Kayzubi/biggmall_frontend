@@ -36,7 +36,8 @@ import {
   ionPencilOutline,
   ionCloudUploadOutline,
   ionImagesOutline,
-  ionCloseOutline
+  ionCloseOutline,
+  ionRemoveOutline
 
 } from '@ng-icons/ionicons';
 import { TableComponent } from '../components/table/table.component';
@@ -85,6 +86,7 @@ import { PopupComponent } from '../components/popup/popup.component';
       ionCloudUploadOutline,
       ionImagesOutline,
       ionCloseOutline,
+      ionRemoveOutline
     }),
     DialogModule,
   ],

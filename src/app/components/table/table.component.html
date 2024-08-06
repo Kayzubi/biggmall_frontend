@@ -1,7 +1,9 @@
 <div class="w-full border-b border-b-border">
   <ng-content select="[caption]" />
   <div class="w-full overflow-auto">
-    <div [class]="'min-w-[' + minWidth + ']'">
+    <div [style]="{
+      minWidth: minWidth
+    }">
       <div
         [class]="
           'grid bg-background text-text p-4 border-y border-y-border font-semibold' +

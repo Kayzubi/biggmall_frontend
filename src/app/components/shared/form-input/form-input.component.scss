@@ -1,7 +1,7 @@
 :host ::ng-deep input {
-  @apply w-full bg-transparent border border-border rounded-lg h-12 px-2;
+  @apply w-full bg-transparent border border-border rounded-lg h-12 px-2 text-text;
 }
 
 :host ::ng-deep textarea {
-  @apply w-full bg-transparent border border-border rounded-lg h-12 px-2 resize-none;
+  @apply w-full bg-transparent border border-border rounded-lg h-12 px-2 resize-none text-text;
 }
