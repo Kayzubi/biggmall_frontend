@@ -1,7 +1,8 @@
 <app-page-header header="Categories" />
 <app-card>
   <app-table
-    [headers]="['Category', 'Options']"
+    [headers]="['Category', 'Slug']"
+    minWidth="100%"
   >
     <div class="flex items-center justify-between bg-card py-4" caption>
       <div>
@@ -11,10 +12,90 @@
         label="Add Category"
         icon="ionAddOutline"
         styleClass="font-normal btn-primary gap-1 flex-row-reverse "
+        (onClick)="toggleAddModal(true)"
       />
     </div>
     <div body>
+      <div class=" grid grid-cols-2 items-center py-3 px-3 hover:bg-background" (click)="toggleModal(true)">
+        <div>
+          <p>NFC Business Cards</p>
+        </div>
+        <div>
+          <p>NFC_BUSINESS_CARDS</p>
+        </div>
 
+      </div>
     </div>
   </app-table>
 </app-card>
+
+
+<app-popup
+  [visible]="showModal"
+  (showModal)="toggleModal($event)"
+  position="top"
+>
+  <div class="flex-auto" heading>
+    <h2 class="font-medium">Edit Category</h2>
+  </div>
+  <div class="px-5 flex flex-col gap-1">
+    <app-form-input label="Category name" inputName="name">
+      <input pInputText id="name" class="text-sm" />
+    </app-form-input>
+
+    <app-form-input label="SLUG" inputName="name">
+      <input pInputText id="name" class="text-sm" disabled />
+    </app-form-input>
+
+
+  </div>
+  <div footer class="flex justify-end gap-4 items-center py-2 mt-5">
+    <app-button
+      label="Cancel"
+      styleClass="  h-8 w-14 justify-center text-red-400"
+      size="normal"
+      (onClick)="toggleModal(false)"
+    />
+    <app-button
+      label="Save Category"
+      styleClass="btn-primary h-8 m-w-14 justify-center"
+      size="normal"
+      (onClick)="toggleModal(false)"
+    />
+  </div>
+</app-popup>
+
+<app-popup
+  [visible]="showAddModal"
+  (showModal)="toggleAddModal($event)"
+  position="top"
+>
+  <div class="flex-auto" heading>
+    <h2 class="font-medium">Add New Category</h2>
+  </div>
+  <div class="px-5 flex flex-col gap-1">
+    <app-form-input label="Category name" inputName="name">
+      <input pInputText id="name" class="text-sm" />
+    </app-form-input>
+
+    <app-form-input label="SLUG" inputName="name">
+      <input pInputText id="name" class="text-sm" disabled />
+    </app-form-input>
+
+
+  </div>
+  <div footer class="flex justify-end gap-4 items-center py-2 mt-5">
+    <app-button
+      label="Cancel"
+      styleClass="  h-8 w-14 justify-center text-red-400"
+      size="normal"
+      (onClick)="toggleAddModal(false)"
+    />
+    <app-button
+      label="Save Category"
+      styleClass="btn-primary h-8 m-w-14 justify-center"
+      size="normal"
+      (onClick)="toggleAddModal(false)"
+    />
+  </div>
+</app-popup>
