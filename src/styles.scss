@@ -76,13 +76,16 @@
 }
 
 label, .p-dropdown-label, .p-dropdown-empty-message, .p-dropdown-items, .p-menuitem-text {
-  @apply text-text text-sm;
+  @apply text-text text-sm cursor-pointer;
 }
 
 .p-menuitem-content {
   @apply hover:bg-card
 }
 
+.p-focus {
+  @apply shadow-none focus-within:shadow-none focus:shadow-none focus-visible:shadow-none
+}
 
 
 input, textarea {
@@ -93,6 +96,11 @@ input, textarea {
    background: transparent
  }
 
+ .p-radiobutton-box {
+  @apply bg-background;
+ }
+
+
  .p-fileupload-content {
    background: transparent;
    border: 1px dotted #da5726;
@@ -101,6 +109,10 @@ input, textarea {
    flex-direction: column;
    align-items: center;
    justify-content: center;
+ }
+
+ .p-highlight {
+  @apply bg-primary
  }
 
  .p-inputswitch-slider{

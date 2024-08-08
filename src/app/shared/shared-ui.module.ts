@@ -37,7 +37,9 @@ import {
   ionCloudUploadOutline,
   ionImagesOutline,
   ionCloseOutline,
-  ionRemoveOutline
+  ionRemoveOutline,
+  ionEyeOutline,
+  ionTrashBinOutline
 
 } from '@ng-icons/ionicons';
 import { TableComponent } from '../components/table/table.component';
@@ -86,7 +88,9 @@ import { PopupComponent } from '../components/popup/popup.component';
       ionCloudUploadOutline,
       ionImagesOutline,
       ionCloseOutline,
-      ionRemoveOutline
+      ionRemoveOutline,
+      ionEyeOutline,
+      ionTrashBinOutline,
     }),
     DialogModule,
   ],
@@ -103,7 +107,7 @@ import { PopupComponent } from '../components/popup/popup.component';
     DialogModule,
     TableComponent,
     PopupComponent,
-    ChipModule
+    ChipModule,
   ],
 })
 export class SharedUIModule {}

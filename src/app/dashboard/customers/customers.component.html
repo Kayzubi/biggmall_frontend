@@ -1,20 +1,80 @@
 <app-page-header header="Customers" />
 <app-card>
   <app-table
-    [headers]="['Email', 'Fullname', 'Total Orders', 'Options']"
+    [headers]="['Email', 'Fullname', 'Total Orders', 'Customer Since', '']"
   >
     <div class="flex items-center justify-between bg-card py-4" caption>
-      <div>
-      </div>
+      <div></div>
       <app-button
         type="button"
         label="Add Customer"
         icon="ionAddOutline"
         styleClass="font-normal btn-primary gap-1 flex-row-reverse "
+        (onClick)="toggleModal(true)"
       />
     </div>
     <div body>
-
+      <div class="grid grid-cols-5 py-3 px-3 hover:bg-background">
+        <div>
+          <p>kizitozuibgmeail.com</p>
+        </div>
+        <div>
+          <p>Kizito Zubi</p>
+        </div>
+        <div>
+          <p>10</p>
+        </div>
+        <div>
+          <p>24/08/2023</p>
+        </div>
+        <div class="flex items-center">
+          <a
+            pButton
+            routerLink="/dashboard/customers/id"
+            class="text-xs btn-primary-outline p-2 flex items-center gap-1"
+          >
+            <ng-icon name="ionEyeOutline" />
+            View
+          </a>
+        </div>
+      </div>
     </div>
   </app-table>
 </app-card>
+
+<app-popup
+  [visible]="showModal"
+  (showModal)="toggleModal($event)"
+  position="top"
+>
+  <div class="flex-auto" heading>
+    <h2 class="font-medium">Add New Customer</h2>
+  </div>
+  <div class="px-5 flex flex-col gap-1">
+    <app-form-input label="Customer Fullname" inputName="name">
+      <input pInputText id="name" class="text-sm" />
+    </app-form-input>
+
+    <app-form-input label="Customer Email" inputName="name">
+      <input pInputText id="name" class="text-sm" />
+    </app-form-input>
+
+    <app-form-input label="Customer Phone" inputName="name">
+      <input pInputText id="name" class="text-sm" />
+    </app-form-input>
+  </div>
+  <div footer class="flex justify-end gap-4 items-center py-2 mt-5">
+    <app-button
+      label="Cancel"
+      styleClass="  h-8 w-14 justify-center text-red-400"
+      size="normal"
+      (onClick)="toggleModal(false)"
+    />
+    <app-button
+      label="Save Customer"
+      styleClass="btn-primary h-8 m-w-14 justify-center"
+      size="normal"
+      (onClick)="toggleModal(false)"
+    />
+  </div>
+</app-popup>

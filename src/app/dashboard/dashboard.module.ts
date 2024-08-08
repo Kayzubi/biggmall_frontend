@@ -33,6 +33,7 @@ import { AddProductComponent } from './inventory/add-product/add-product.compone
 import { ProductDetailsComponent } from './inventory/product-details/product-details.component';
 import { ProductOverviewComponent } from './inventory/product-overview/product-overview.component';
 import { SharedFormModule } from "../shared/shared-form.module";
+import { CustomerComponent } from './customers/customer/customer.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { SharedFormModule } from "../shared/shared-form.module";
     AddProductComponent,
     ProductDetailsComponent,
     ProductOverviewComponent,
+    CustomerComponent,
   ],
   imports: [
     CommonModule,

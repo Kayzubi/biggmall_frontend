@@ -12,6 +12,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ColorPickerModule } from 'primeng/colorpicker';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { FileUploadModule } from 'primeng/fileupload';
+import { CalendarModule } from 'primeng/calendar';
+import { RadioButtonModule } from 'primeng/radiobutton';
 
 import { FormInputComponent } from '../components/shared/form-input/form-input.component';
 import { CommonModule } from "@angular/common";
@@ -35,7 +37,9 @@ import { FormsModule } from '@angular/forms';
     InputTextareaModule,
     InputNumberModule,
     FileUploadModule,
-    FormsModule
+    FormsModule,
+    CalendarModule,
+    RadioButtonModule
   ],
 })
 export class SharedFormModule {}

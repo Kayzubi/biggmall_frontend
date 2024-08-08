@@ -27,11 +27,17 @@
         <div class="flex items-center">100</div>
         <div class="flex items-center">#24, 000</div>
         <div class="flex items-center">2</div>
-        <div class="flex items-center">
+        <div class="flex items-center gap-2">
           <a pButton routerLink="/dashboard/products/id" class="text-xs btn-primary-outline p-2 flex items-center gap-1" >
             <ng-icon name="ionPencilOutline" />
             Edit
           </a>
+                <app-button
+            type="button"
+            label="Delete"
+            icon="ionTrashBinOutline"
+            styleClass="font-normal text-white bg-red-400 gap-1 flex-row-reverse "
+          />
         </div>
       </div>
     </div>
