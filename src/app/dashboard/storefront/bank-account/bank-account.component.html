@@ -1,0 +1,44 @@
+<section class="flex items-center justify-center h-ful">
+  <div class="w-4/5 max-w-[800px] min-h-[400px]">
+    <app-card>
+      <h3 class="font-medium text-lg">Store Remitance Accounts:</h3>
+      <div class="flex flex-col gap-3 mb-5">
+        <div
+          class="grid grid-cols-2 items-center py-4 px-2 w-2/3 mx-auto sm:w-full"
+        >
+          <span class="flex items-center gap-5">
+            <label class="capitalize"> Bank Name: </label>
+          </span>
+          <span>
+            <p-dropdown
+              styleClass="border  border-border bg-transparent w-full"
+              panelStyleClass="bg-background text-text"
+              [options]="[]"
+              optionLabel="name"
+              placeholder="Select a bank"
+            />
+          </span>
+        </div>
+        <div
+          class="grid grid-cols-2 items-center py-4 px-2 w-2/3 mx-auto sm:w-full"
+        >
+          <span class="flex items-center gap-5">
+            <label class="capitalize"> Account Number: </label>
+          </span>
+          <input pInputText class="flex-auto h-10 border border-border px-2" />
+        </div>
+        <div
+          class="grid grid-cols-2 items-center py-4 px-2 w-2/3 mx-auto sm:w-full"
+        >
+          <span class="flex items-center gap-5">
+            <label class="capitalize"> Account Name: </label>
+          </span>
+          <input pInputText disabled class="flex-auto h-10 border border-border px-2" />
+        </div>
+      </div>
+      <div class="flex justify-end">
+        <app-button label="Save Changes" styleClass="btn-primary" />
+      </div>
+    </app-card>
+  </div>
+</section>

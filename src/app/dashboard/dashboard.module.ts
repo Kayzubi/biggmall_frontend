@@ -34,6 +34,11 @@ import { ProductDetailsComponent } from './inventory/product-details/product-det
 import { ProductOverviewComponent } from './inventory/product-overview/product-overview.component';
 import { SharedFormModule } from "../shared/shared-form.module";
 import { CustomerComponent } from './customers/customer/customer.component';
+import { StoreDetailsComponent } from './storefront/store-details/store-details.component';
+import { ThemeComponent } from './storefront/theme/theme.component';
+import { SocialMediaComponent } from './storefront/social-media/social-media.component';
+import { BankAccountComponent } from './storefront/bank-account/bank-account.component';
+import { ThemeItemComponent } from './components/theme-item/theme-item.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +63,11 @@ import { CustomerComponent } from './customers/customer/customer.component';
     ProductDetailsComponent,
     ProductOverviewComponent,
     CustomerComponent,
+    StoreDetailsComponent,
+    ThemeComponent,
+    SocialMediaComponent,
+    BankAccountComponent,
+    ThemeItemComponent,
   ],
   imports: [
     CommonModule,

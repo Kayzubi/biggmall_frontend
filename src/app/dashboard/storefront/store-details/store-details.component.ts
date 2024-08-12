@@ -1,0 +1,18 @@
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-store-details',
+  templateUrl: './store-details.component.html',
+  styleUrl: './store-details.component.scss',
+})
+export class StoreDetailsComponent {
+  showModal: boolean;
+
+  constructor() {
+    this.showModal = false;
+  }
+
+  toggleModal(value: boolean) {
+    this.showModal = value;
+  }
+}

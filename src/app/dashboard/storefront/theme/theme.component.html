@@ -1,0 +1,84 @@
+<section>
+  <p class="font-medium text-lg mb-4">Store Theme:</p>
+  <div class="grid grid-cols-2 md:grid-cols-2 sm:grid-cols-1">
+    <app-theme-item
+      *ngFor="let theme of themes"
+      [theme]="theme"
+      [activeTheme]="activeTheme"
+      (selectTheme)="selectNewTheme($event)"
+    />
+    <div class="p-3">
+      <app-card>
+        <p class="font-medium">Theme Settings</p>
+        <div class="grid grid-cols-2 items-center gap-2 mt-5">
+          <label for="">Primary color:</label>
+          <div
+            class="flex gap-2 items-center bg-background py-1 px-2 rounded-md max-w-[400px] overflow-hidden"
+          >
+            <span class="p-1 rounded-md bg-card">
+              <p-colorPicker [(ngModel)]="primaryColor" />
+            </span>
+            <input pInputText [(ngModel)]="primaryColor" class="flex-auto" />
+          </div>
+        </div>
+        <div class="grid grid-cols-2 items-center gap-2 my-5">
+          <label for="">Secondary color:</label>
+          <span
+            class="flex gap-2 items-center bg-background overflow-hidden py-1 px-2 rounded-md max-w-[400px]"
+          >
+            <span class="p-1 rounded-md bg-card">
+              <p-colorPicker [(ngModel)]="secondaryColor" />
+            </span>
+            <input pInputText [(ngModel)]="secondaryColor" class="flex-auto" />
+          </span>
+        </div>
+        <app-button label="Save Changes" styleClass="btn-primary" />
+      </app-card>
+    </div>
+  </div>
+  <p class="font-medium text-lg my-4">Store Banner(s):</p>
+  <div class="px-3 mt-3">
+    <app-card>
+      <div
+        *ngIf="banners.length; else noBanners"
+        class=" grid grid-cols-3 gap-2 justify-center w-full md:grid-cols-1 sm:grid-cols-1"
+      >
+        <div
+          *ngFor="let banner of banners"
+
+        >
+        <div class=" flex border border-border bg-background rounded-lg h-[200px] overflow-hidden">
+          <div class="bg-gray-200 w-1/2 h-full"></div>
+          <div class=" py-5 flex flex-col gap-2 px-3">
+            <p>Banner {{ banner }}</p>
+            <small
+              >Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse,
+              soluta?</small
+            >
+            <span class="mt-auto">
+              <app-button icon="ionTrashBinOutline" label="Remove" styleClass=" text-red-400 uppercase flex-row-reverse gap-2" />
+
+            </span>
+          </div>
+        </div>
+
+        </div>
+      </div>
+      <ng-template #noBanners>
+        <div class="flex flex-col items-center justify-center">
+          <app-button
+            size="extralarge"
+            icon="ionAddOutline"
+            styleClass="text-primary"
+          />
+          <h3 class="uppercase text-lg text-gray-400">
+            Set Default banner(s) for your store.
+          </h3>
+          <small class="text-primary"
+            >If this is empty, images from your products will be used.</small
+          >
+        </div>
+      </ng-template>
+    </app-card>
+  </div>
+</section>

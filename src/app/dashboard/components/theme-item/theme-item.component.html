@@ -1,0 +1,34 @@
+<div class="p-3">
+  <div class="bg-card h-[250px] grid grid-cols-2 rounded-md border-border border cursor-pointer">
+    <div class=" p-4 flex flex-col items-start">
+      <h3 class="capitalize text-lg font-medium">{{ theme }}</h3>
+      <p class="text-gray-400">FREE</p>
+
+      <div class="mt-auto">
+        <p
+          *ngIf="theme === activeTheme; else fallback"
+          class="flex items-center gap-2 font-medium"
+        >
+          <ng-icon name="ionCheckmarkCircle" size="18px" class="text-primary" /> Active
+        </p>
+
+        <ng-template #fallback>
+          <app-button label="Set active theme" styleClass="btn-primary" (onClick)="onThemeSelect(theme)" />
+        </ng-template>
+      </div>
+    </div>
+    <div class=" relative">
+      <div class=" absolute -top-4 w-full h-[106%] rounded-md shadow-lg overflow-hidden bg-white flex flex-col">
+        <span class=" flex h-4 bg-primary items-center gap-1 px-3">
+          <span class="w-2 h-2 bg-card rounded-full"></span>
+          <span class="w-2 h-2 bg-card rounded-full"></span>
+          <span class="w-2 h-2 bg-card rounded-full"></span>
+        </span>
+        <div class=" flex-auto bg-primary-light">
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

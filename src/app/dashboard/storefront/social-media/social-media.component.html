@@ -1,0 +1,26 @@
+<section class="flex items-center justify-center h-ful">
+  <div class="w-4/5 max-w-[800px] min-h-[400px]">
+    <app-card>
+      <h3 class="font-medium text-lg">Social Media Accounts:</h3>
+      <div class="flex flex-col gap-3 mb-5">
+        <div
+          *ngFor="let social of socialLinks"
+          class="grid grid-cols-2 items-center py-4 px-2"
+        >
+          <span class="flex items-center gap-5">
+            <ng-icon [name]="social.icon" size="18px" class="text-primary" />
+            <label class="capitalize"> {{ social.name }}: </label>
+          </span>
+          <input pInputText class="flex-auto h-10 border border-border px-2" />
+        </div>
+      </div>
+      <div class=" flex justify-end">
+
+        <app-button
+        label="Save Changes"
+        styleClass="btn-primary"
+        />
+      </div>
+    </app-card>
+  </div>
+</section>

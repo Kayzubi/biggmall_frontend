@@ -76,7 +76,7 @@
 }
 
 label, .p-dropdown-label, .p-dropdown-empty-message, .p-dropdown-items, .p-menuitem-text {
-  @apply text-text text-sm cursor-pointer;
+  @apply text-text text-xs cursor-pointer;
 }
 
 .p-menuitem-content {
@@ -112,7 +112,7 @@ input, textarea {
  }
 
  .p-highlight {
-  @apply bg-primary
+  @apply bg-primary text-white
  }
 
  .p-inputswitch-slider{

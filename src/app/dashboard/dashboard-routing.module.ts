@@ -14,6 +14,7 @@ import { AllOrdersComponent } from './orders/all-orders/all-orders.component';
 import { inventoryRoutes } from './inventory/inventory.constants';
 import { orderRoutes } from './orders/orders.constants';
 import { CustomerComponent } from './customers/customer/customer.component';
+import { storefrontRoutes } from './storefront/storefront.constants';
 
 const routes: Routes = [
   {
@@ -55,6 +56,7 @@ const routes: Routes = [
       {
         path: 'store',
         component: StorefrontComponent,
+        children: storefrontRoutes
       },
     ],
   },

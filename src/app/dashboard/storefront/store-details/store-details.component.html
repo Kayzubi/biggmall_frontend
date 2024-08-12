@@ -1,0 +1,199 @@
+<section class="flex gap-5 md:block">
+  <div class="h-full w-[60%]">
+    <app-card>
+      <h3 class="font-medium">Store Details</h3>
+      <div class="my-4">
+        <p class="mb-2">Store logo:</p>
+        <label
+          class="mb-2 w-20 h-20 inline-flex items-center justify-center text-primary text-xl border border-primary border-dashed"
+        >
+          <input type="file" class="hidden" />
+          <ng-icon name="ionAddOutline" />
+        </label>
+      </div>
+      <app-form-input
+        label="Store name"
+        inputName="name"
+        description="Enter the name of your store"
+      >
+        <input pInputText id="name" />
+      </app-form-input>
+      <app-form-input label="Slug" inputName="slug">
+        <input pInputText id="name" />
+      </app-form-input>
+      <app-form-input
+        label="Tagline/Slogan"
+        inputName="name"
+        description="Enter the name of your store"
+      >
+        <input pInputText id="name" />
+      </app-form-input>
+      <app-form-input
+        label="Store email"
+        inputName="name"
+        description="Enter the name of your store"
+      >
+        <input pInputText id="name" />
+      </app-form-input>
+      <app-form-input
+        label="Store description"
+        inputName="name"
+        description="Briefly describe your product"
+      >
+        <textarea
+          rows="5"
+          cols="30"
+          class="p-3"
+          pInputTextarea
+          [autoResize]="true"
+        ></textarea>
+      </app-form-input>
+      <p-dropdown
+        styleClass=" w-full border border-border bg-transparent"
+        panelStyleClass="bg-background text-text"
+        [options]="[]"
+        optionLabel="name"
+        placeholder="Store Category"
+      />
+      <div class="flex py-5 gap-4 items-center justify-end">
+        <app-button
+          label="Cancel"
+          styleClass="  h-8 w-14 justify-center text-red-400"
+          size="normal"
+        />
+        <app-button
+          label="Save Changes"
+          styleClass="btn-primary h-8 m-w-14 justify-center"
+          size="normal"
+        />
+      </div>
+    </app-card>
+  </div>
+  <div class="flex-auto flex flex-col gap-5 px-3">
+    <div>
+      <app-card>
+        <h3 class="font-medium">Shipping Methods</h3>
+        <div class="mt-5 flex flex-col gap-3">
+          <div
+            class="rounded-lg border border-border flex flex-col overflow-hidden"
+          >
+            <span
+              class="bg-primary-light p-2 flex justify-between items-center"
+            >
+              <small class="uppercase">Rate name</small
+              ><small class="uppercase">Shipping fee</small>
+            </span>
+            <span class="flex justify-between items-center gap-3 p-3">
+              <p class="flex-auto truncate text-xs">
+                Home Delvery within Lagos
+              </p>
+              <small class="flex-auto truncate flex justify-end">
+                {{ 5000 | currency: "NGN" }}
+              </small>
+            </span>
+          </div>
+
+          <div
+            class="rounded-lg border border-border flex flex-col overflow-hidden"
+          >
+            <span
+              class="bg-primary-light p-2 flex justify-between items-center"
+            >
+              <small class="uppercase">Rate name</small
+              ><small class="uppercase">Shipping fee</small>
+            </span>
+            <span class="flex justify-between items-center gap-3 p-3">
+              <p class="flex-auto truncate text-xs">Delvery outside Lagos</p>
+              <small class="flex-auto truncate flex justify-end">
+                {{ 8000 | currency: "NGN" }}
+              </small>
+            </span>
+          </div>
+          <app-button
+            label="Add Shipping rate"
+            icon="ionAddOutline"
+            styleClass="text-primary gap-1 flex-row-reverse"
+            (onClick)="toggleModal(true)"
+          />
+        </div>
+        <div
+          class="flex flex-row-reverse justify-end gap-5 py-3 items-center mt-4 px-3"
+        >
+          <p-inputSwitch
+            styleClass="focus-visible:shadow-none focus-within:shadow-none "
+          />
+          <p class="text-sm mb-1">Allow payment on delivery?</p>
+        </div>
+      </app-card>
+    </div>
+    <div>
+      <app-card>
+        <h3 class="font-medium">Store Management</h3>
+        <div class="mt-5 flex flex-col gap-3">
+          <div>
+            <p class="font-medium">Store URL:</p>
+            <span class="flex justify-between items-center">
+              <small>https://biggmall.vercel.app/lethers-by-fayy/</small>
+              <app-button icon="ionCopyOutline" styleClass="text-lg" />
+            </span>
+          </div>
+
+          <div class="mt-4 flex flex-col gap-4">
+            <p class="font-semibold">Delete Store</p>
+            <p>Deleting this store permanently removes it from our platform.</p>
+             <app-button
+          label="Delete Store"
+          styleClass="bg-red-400 text-white h-10 m-w-14 justify-center mt-5"
+          size="normal"
+        />
+          </div>
+        </div>
+      </app-card>
+    </div>
+  </div>
+</section>
+
+<app-popup
+  [visible]="showModal"
+  (showModal)="toggleModal($event)"
+  position="top"
+>
+  <div class="flex-auto" heading>
+    <h2 class="font-medium">Add Shipping Rate</h2>
+  </div>
+  <div class="px-5 flex flex-col gap-4">
+    <app-form-input
+      label="Rate name"
+      inputName="name"
+      description="Your customers will see this, ensure it's clear and simple"
+    >
+      <input pInputText id="name" class="text-sm" />
+    </app-form-input>
+
+    <app-form-input label="Shipping Rate" inputName="price">
+      <p-inputNumber
+        [min]="0"
+        inputId="price"
+        mode="currency"
+        class="w-full"
+        currency="NGN"
+        styleClass=" w-full"
+        locale="en-US"
+      />
+    </app-form-input>
+  </div>
+  <div footer class="flex justify-end gap-4 items-center py-2 mt-5">
+    <app-button
+      label="Cancel"
+      styleClass="  h-8 w-14 justify-center text-red-400"
+      size="normal"
+      (onClick)="toggleModal(false)"
+    />
+    <app-button
+      label="Save"
+      styleClass="btn-primary h-8 w-14 justify-center"
+      size="normal"
+      (onClick)="toggleModal(false)"
+    />
+  </div>
+</app-popup>

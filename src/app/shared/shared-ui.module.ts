@@ -16,6 +16,7 @@ import {
   ionLogoInstagram,
   ionLogoTwitter,
   ionLogoYoutube,
+  ionLogoFacebook,
   ionNotificationsOutline,
   ionSettingsOutline,
   ionHelpCircleOutline,
@@ -39,8 +40,11 @@ import {
   ionCloseOutline,
   ionRemoveOutline,
   ionEyeOutline,
-  ionTrashBinOutline
-
+  ionTrashBinOutline,
+  ionColorPaletteOutline,
+  ionWalletOutline,
+  ionCopyOutline,
+  ionCheckmarkCircle,
 } from '@ng-icons/ionicons';
 import { TableComponent } from '../components/table/table.component';
 import { DialogModule } from 'primeng/dialog';
@@ -91,6 +95,11 @@ import { PopupComponent } from '../components/popup/popup.component';
       ionRemoveOutline,
       ionEyeOutline,
       ionTrashBinOutline,
+      ionColorPaletteOutline,
+      ionWalletOutline,
+      ionCopyOutline,
+      ionCheckmarkCircle,
+      ionLogoFacebook,
     }),
     DialogModule,
   ],

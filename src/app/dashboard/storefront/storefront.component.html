@@ -1,1 +1,14 @@
-<p>storefront works!</p>
+<app-page-header header="Store Front" [showBackButton]="false" />
+
+<nav class="  border-b border-b-border mb-5 overflow-auto flex gap-3">
+  <a
+    *ngFor="let link of storefrontRoutes"
+    [routerLink]="link.routerLink"
+    routerLinkActive="text-primary font-semibold border-b-2 border-b-primary"
+    class=" inline-flex items-center gap-2 h-full py-3 flex-nowrap"
+  >
+  <ng-icon [name]="link.icon" />
+    {{ link.label }}
+  </a>
+</nav>
+<router-outlet />
