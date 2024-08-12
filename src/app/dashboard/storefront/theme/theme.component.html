@@ -13,7 +13,7 @@
         <div class="grid grid-cols-2 items-center gap-2 mt-5">
           <label for="">Primary color:</label>
           <div
-            class="flex gap-2 items-center bg-background py-1 px-2 rounded-md max-w-[400px] overflow-hidden"
+            class="flex gap-2 items-center bg-background py-1 px-2 rounded-md max-w-[400px]"
           >
             <span class="p-1 rounded-md bg-card">
               <p-colorPicker [(ngModel)]="primaryColor" />
@@ -23,14 +23,14 @@
         </div>
         <div class="grid grid-cols-2 items-center gap-2 my-5">
           <label for="">Secondary color:</label>
-          <span
-            class="flex gap-2 items-center bg-background overflow-hidden py-1 px-2 rounded-md max-w-[400px]"
+          <div
+            class="flex gap-2 items-center bg-background py-1 px-2 rounded-md max-w-[400px]"
           >
             <span class="p-1 rounded-md bg-card">
               <p-colorPicker [(ngModel)]="secondaryColor" />
             </span>
             <input pInputText [(ngModel)]="secondaryColor" class="flex-auto" />
-          </span>
+          </div>
         </div>
         <app-button label="Save Changes" styleClass="btn-primary" />
       </app-card>
@@ -49,10 +49,10 @@
         >
         <div class=" flex border border-border bg-background rounded-lg h-[200px] overflow-hidden">
           <div class="bg-gray-200 w-1/2 h-full"></div>
-          <div class=" py-5 flex flex-col gap-2 px-3">
+          <div class=" py-5 flex flex-col gap-2 px-3 w-1/2">
             <p>Banner {{ banner }}</p>
             <small
-              >Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse,
+               class="truncate">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse,
               soluta?</small
             >
             <span class="mt-auto">
@@ -65,7 +65,7 @@
         </div>
       </div>
       <ng-template #noBanners>
-        <div class="flex flex-col items-center justify-center">
+        <div class="flex flex-col items-center justify-center py-">
           <app-button
             size="extralarge"
             icon="ionAddOutline"

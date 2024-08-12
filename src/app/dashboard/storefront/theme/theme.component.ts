@@ -20,7 +20,7 @@ export class ThemeComponent {
     this.activeTheme = 'trendy'
     this.primaryColor = '#da5726';
     this.secondaryColor = '#ffffff'
-    this.banners = Array.from({ length: 3}).map((_, index) => (`${index}`) )
+    this.banners = Array.from({ length: 0}).map((_, index) => (`${index}`) )
   }
 
   selectNewTheme(arg: ThemeOptions) {
