@@ -1,10 +1,11 @@
 
 <div class="flex flex-col gap-2 pt-6">
-    <p-floatLabel>
+    <p-floatLabel [class.invalid]="formControl?.invalid && (formControl?.dirty || formControl?.touched)" >
         <ng-content />
         <label [for]="inputName" class="text-sm">{{ label }}</label>
     </p-floatLabel>
     <small *ngIf="description" class=" text-gray-500">
       {{ description }}
     </small>
+    <app-form-input-error [control]="formControl" [messages]="errorMessages" [label]="label" />
 </div>

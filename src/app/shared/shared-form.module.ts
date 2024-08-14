@@ -17,15 +17,16 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 
 import { FormInputComponent } from '../components/shared/form-input/form-input.component';
 import { CommonModule } from "@angular/common";
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FormInputErrorComponent } from "../components/form-input-error/form-input-error.component";
 
 
 
 
 
 @NgModule({
-  declarations: [FormInputComponent],
-  imports: [InputTextModule, FloatLabelModule, CommonModule, FormsModule],
+  declarations: [FormInputComponent, FormInputErrorComponent],
+  imports: [InputTextModule, FloatLabelModule, CommonModule, ReactiveFormsModule, FormsModule],
   exports: [
     FormInputComponent,
     PasswordModule,
@@ -37,6 +38,7 @@ import { FormsModule } from '@angular/forms';
     InputTextareaModule,
     InputNumberModule,
     FileUploadModule,
+    ReactiveFormsModule,
     FormsModule,
     CalendarModule,
     RadioButtonModule

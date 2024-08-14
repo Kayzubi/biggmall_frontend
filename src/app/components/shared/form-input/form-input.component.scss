@@ -5,3 +5,9 @@
 :host ::ng-deep textarea {
   @apply w-full bg-transparent border border-border rounded-lg h-12 px-2 resize-none text-text;
 }
+
+.invalid span {
+  input {
+      @apply border-red-500;
+    }
+}

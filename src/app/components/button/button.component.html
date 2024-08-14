@@ -1,21 +1,22 @@
 <button
-  pButton
-  pRipple
   [type]="type"
   (click)="handleClick($event)"
   [class]="
-    'flex p-2 items-center focus-visible:shadow-none focus-within:shadow-none ' +
+    'flex p-2 items-center focus-visible:shadow-none focus-within:shadow-none h-[44px] ' +
     styleClass
   "
   [class.text-xs]="size === 'normal'"
   [class.text-xl]="size === 'large'"
   [class.text-lg]="size === 'medium'"
   [class.text-3xl]="size === 'extralarge'"
-  [rounded]="variant === 'round'"
-  [class.rounded-md]="variant === 'main'"
-
+  [class.rounded-full]="variant === 'round'"
+  [disabled]="loading || disabled"
+  [@loadingState]="loading ? 'loading' : 'not-loading'"
 >
-  <span *ngIf="label">{{ label }}</span>
-  <ng-icon *ngIf="icon" [name]="icon" />
-  <ng-content />
+  <span *ngIf="loading; else mainContent" class="loading"> </span>
+  <ng-template #mainContent>
+    <span *ngIf="label">{{ label }}</span>
+    <ng-icon *ngIf="icon" [name]="icon" />
+    <ng-content />
+  </ng-template>
 </button>

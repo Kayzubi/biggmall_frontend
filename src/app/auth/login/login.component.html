@@ -15,33 +15,39 @@
         <h1 class="font-semibold text-4xl">Sign In</h1>
       </div>
 
-      <form class="pl-3 flex flex-col gap-3">
+      <form class="pl-3 flex flex-col gap-3" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <app-form-input
-          label="Username"
-          description="Enter your username to log in"
-          inputName="username"
+          label="Email"
+          description="Enter your Email to log in"
+          inputName="email"
+          [form]="loginForm"
         >
-          <input pInputText id="username" autofocus />
+          <input pInputText formControlName="email" />
         </app-form-input>
 
         <app-form-input
           label="Password"
           description="Enter your password to log in"
           inputName="password"
+          [form]="loginForm"
         >
           <p-password
             [toggleMask]="true"
             [feedback]="false"
             styleClass="w-full"
+            formControlName="password"
           />
         </app-form-input>
-        <app-button label="Log in" styleClass="w-full h-[50px] bg-primary text-white text-lg mt-10 justify-center" type="submit" />
+        <app-button
+          label="Log in"
+          styleClass="w-full h-[44px] bg-primary text-white text-lg justify-center"
+          type="submit"
+          [loading]="logginIn"
+        />
 
         <p class="text-gray-600">
           Don't have an account?
-          <a routerLink="/auth/signup" class="text-primary">
-            Sign up
-          </a>
+          <a routerLink="/auth/signup" class="text-primary"> Sign up </a>
         </p>
       </form>
     </div>

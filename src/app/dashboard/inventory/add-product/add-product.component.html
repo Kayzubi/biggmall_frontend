@@ -85,20 +85,18 @@
             let-clearCallback="clearCallback"
           >
             <div class="flex py-1 gap-3">
-              <app-button
-                (onClick)="chooseCallback()"
-                styleClass="border border-primary text-primary w-8 h-8 items-center justify-center hover:bg-primary hover:text-white"
-                icon="ionCloudUploadOutline"
-                variant="round"
-                size="normal"
-              />
-              <app-button
-                styleClass="border border-red-400 text-red-400 w-8 h-8 items-center justify-center hover:bg-red-400 hover:text-white"
-                icon="ionCloseOutline"
-                variant="round"
-                size="normal"
-                (onClick)="clearCallback()"
-              />
+              <button
+                (click)="chooseCallback()"
+                class="flex rounded-full border border-red-400 text-red-400 w-8 h-8 items-center justify-center hover:bg-primary hover:text-white"
+              >
+                <ng-icon name="ionCloudUploadOutline" />
+              </button>
+              <button
+                (click)="clearCallback()"
+                class="flex justify-center border border-red-700 text-red-700 w-8 h-8 items-center mt-auto rounded-full hover:bg-red-400 hover:text-white"
+              >
+                <ng-icon name="ionCloseOutline" />
+              </button>
             </div>
           </ng-template>
           <ng-template pTemplate="content" let-files>
@@ -118,12 +116,11 @@
                     />
                   </div>
                   <span class="text-sm">{{ file.name }}</span>
-                  <app-button
-                    styleClass="border border-red-700 text-red-700 w-8 h-8 items-center mt-auto"
-                    icon="ionCloseOutline"
-                    variant="round"
-                    size="normal"
-                  />
+                  <button
+                    class="flex justify-center border border-red-700 text-red-700 w-8 h-8 items-center mt-auto rounded-full hover:bg-red-400 hover:text-white"
+                  >
+                    <ng-icon name="ionCloseOutline" />
+                  </button>
                 </div>
               </div>
             </div>
@@ -176,21 +173,23 @@
               (onClick)="toggleModal(true)"
             />
           </span>
-          <div class=" mt-5 ">
-            <div class=" rounded-lg border border-border flex flex-col overflow-hidden">
-              <span class=" bg-primary-light p-2 flex justify-between items-center ">
-                <small class="uppercase">Group name</small><small class="uppercase">Options</small>
+          <div class="mt-5">
+            <div
+              class="rounded-lg border border-border flex flex-col overflow-hidden"
+            >
+              <span
+                class="bg-primary-light p-2 flex justify-between items-center"
+              >
+                <small class="uppercase">Group name</small
+                ><small class="uppercase">Options</small>
               </span>
-              <span class=" flex justify-between items-center gap-3 p-3">
-                <p class=" flex-auto truncate text-xs">Base Surface</p>
-              <small class=" flex-auto truncate flex justify-end">
-                PVC,Bamboo,Beech,Cherry,White,Black
-              </small>
-
+              <span class="flex justify-between items-center gap-3 p-3">
+                <p class="flex-auto truncate text-xs">Base Surface</p>
+                <small class="flex-auto truncate flex justify-end">
+                  PVC,Bamboo,Beech,Cherry,White,Black
+                </small>
               </span>
-
             </div>
-
           </div>
         </div>
       </app-card>
@@ -232,9 +231,17 @@
     </app-form-input>
 
     <p class="font-medium text-primary">Options:</p>
-    <div class=" flex flex-wrap items-center gap-2">
-      <p-chip label="PVC" [removable]="true" styleClass=" bg-primary text-white text-xs" />
-      <p-chip label="Bamboo" [removable]="true" styleClass=" bg-primary text-white text-xs" />
+    <div class="flex flex-wrap items-center gap-2">
+      <p-chip
+        label="PVC"
+        [removable]="true"
+        styleClass=" bg-primary text-white text-xs"
+      />
+      <p-chip
+        label="Bamboo"
+        [removable]="true"
+        styleClass=" bg-primary text-white text-xs"
+      />
     </div>
 
     <div class="flex items-center justify-between gap-5">
@@ -247,13 +254,12 @@
     </div>
     <div class="flex items-center justify-end">
       <app-button
-      label="Add Option"
-      styleClass="flex-row-reverse gap-1 justify-center text-primary"
-      size="normal"
-      icon="ionAddOutline"
-    />
+        label="Add Option"
+        styleClass="flex-row-reverse gap-1 justify-center text-primary"
+        size="normal"
+        icon="ionAddOutline"
+      />
     </div>
-
   </div>
   <div footer class="flex justify-end gap-4 items-center py-2 mt-5">
     <app-button

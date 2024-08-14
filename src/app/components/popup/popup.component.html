@@ -1,15 +1,20 @@
-<p-dialog [modal]="true" [visible]="visible" [position]="position" [style]="{ width: '25rem' }">
+<p-dialog
+  [modal]="true"
+  [visible]="visible"
+  [position]="position"
+  [style]="{ width: '25rem' }"
+>
   <ng-template pTemplate="headless">
-    <div class=" bg-card rounded-md border border-border p-5">
-      <div class=" flex justify-between items-center gap-4">
-        <ng-content select="[heading]"  />
-        <app-button
-          styleClass="border border-red-400 text-red-400 w-8 h-8 items-center justify-center mt-auto hover:bg-red-400 hover:text-white"
-          icon="ionCloseOutline"
-          variant="round"
-          size="normal"
-          (onClick)="toggleModal(false)"
-        />
+    <div class="bg-card rounded-md border border-border p-5">
+      <div class="flex justify-between items-center gap-4">
+        <ng-content select="[heading]" />
+        <button
+          pButton
+          (click)="toggleModal(false)"
+          class="rounded-full border border-red-400 text-red-400 w-6 h-6 items-center justify-center mt-auto hover:bg-red-400 hover:text-white"
+        >
+          <ng-icon name="ionCloseOutline" />
+        </button>
       </div>
       <ng-content />
       <div>
