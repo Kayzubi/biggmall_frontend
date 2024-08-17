@@ -15,6 +15,7 @@
   --card: #ffffff;
   --border: #d7d8da;
   --text: #000000;
+  --text-gray: #7F7F7F;
 
   --animate-duration: 1000ms;
 }
@@ -32,6 +33,7 @@
   --card: #152642;
   --border: #2F4562;
   --text: #FDFDFD;
+  --text-gray: #e3e2e2;
 
   background: var(--background);
   color: var(--text);
@@ -43,6 +45,7 @@
   --card: #3d3d3d;
   --border: #656565;
   --text: #FDFDFD;
+  --text-gray: #e3e2e2;
 
   background: var(--background);
   color: var(--text);
@@ -75,8 +78,12 @@
   }
 }
 
-label, .p-dropdown-label, .p-dropdown-empty-message, .p-dropdown-items, .p-menuitem-text {
+label, .p-dropdown-label, .p-dropdown-empty-message, .p-dropdown-items, .p-dropdown-item, .p-menuitem-text {
   @apply text-text text-xs cursor-pointer;
+}
+
+.p-dropdown-item {
+  @apply hover:bg-primary-light
 }
 
 .p-menuitem-content {
@@ -98,6 +105,10 @@ input, textarea {
 
  .p-radiobutton-box {
   @apply bg-background border border-primary;
+ }
+
+ .p-dropdown-header {
+  @apply bg-background text-text
  }
 
 

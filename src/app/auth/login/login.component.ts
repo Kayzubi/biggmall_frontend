@@ -6,6 +6,10 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { ErrorResponse } from '../../types';
+import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -15,14 +19,17 @@ import {
 export class LoginComponent {
   logginIn: boolean;
   loginForm: FormGroup;
+  savedEmail: string = localStorage.getItem('biggmall_login') ?? ''
 
   constructor(
     private auth: AuthService,
     private form: FormBuilder,
+    private toast: MessageService,
+    private router: Router
   ) {
     this.logginIn = false;
     this.loginForm = this.form.group({
-      email: ['', [Validators.required, Validators.email]],
+      email: [this.savedEmail, [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
     });
   }
@@ -37,11 +44,21 @@ export class LoginComponent {
         })
         .subscribe({
           next: (response) => {
-            console.log(response);
+            this.toast.add({
+              severity: 'success',
+              summary: 'Success',
+              detail: response.message,
+            });
+            localStorage.setItem('biggmall_login', this.loginForm.value.email);
             this.logginIn = false;
+            this.router.navigate(['/dashboard'])
           },
-          error: (err: any) => {
-            console.log(err);
+          error: (err: ErrorResponse) => {
+            this.toast.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: err.message,
+            });
             this.logginIn = false;
           },
         });

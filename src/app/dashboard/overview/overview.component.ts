@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, computed } from '@angular/core';
 import { DatasetChartOptions } from 'chart.js';
+
+
 
 @Component({
   selector: 'app-overview',
@@ -7,6 +9,11 @@ import { DatasetChartOptions } from 'chart.js';
   styleUrl: './overview.component.scss',
 })
 export class OverviewComponent {
+  constructor( ) {
+  }
+
+
+
   data = {
     labels: [
       'Monday',

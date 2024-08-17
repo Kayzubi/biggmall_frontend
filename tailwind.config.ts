@@ -17,6 +17,7 @@ module.exports = {
         card: 'var(--card)',
         border: 'var(--border)',
         text: 'var(--text)',
+        'text-gray': 'var(--text-gray)',
       },
       fontFamily: {
         'gilroy-regular': ['Gilroy-Regular', 'sans-serif'],

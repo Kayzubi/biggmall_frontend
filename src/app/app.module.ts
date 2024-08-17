@@ -4,12 +4,17 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { authInterceptor } from './interceptors/auth.interceptor';
+
+
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule],
-  providers: [provideHttpClient(), provideAnimationsAsync()],
+  imports: [BrowserModule, AppRoutingModule, ToastModule],
+  providers: [provideHttpClient(withInterceptors([authInterceptor])), provideAnimationsAsync(), MessageService, ConfirmationService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

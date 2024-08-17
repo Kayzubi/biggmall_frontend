@@ -39,6 +39,7 @@ import { ThemeComponent } from './storefront/theme/theme.component';
 import { SocialMediaComponent } from './storefront/social-media/social-media.component';
 import { BankAccountComponent } from './storefront/bank-account/bank-account.component';
 import { ThemeItemComponent } from './components/theme-item/theme-item.component';
+import { ShipppingOptionComponent } from './components/shippping-option/shippping-option.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { ThemeItemComponent } from './components/theme-item/theme-item.component
     SocialMediaComponent,
     BankAccountComponent,
     ThemeItemComponent,
+    ShipppingOptionComponent,
   ],
   imports: [
     CommonModule,

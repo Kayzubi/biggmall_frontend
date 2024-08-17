@@ -49,6 +49,7 @@ import {
 import { TableComponent } from '../components/table/table.component';
 import { DialogModule } from 'primeng/dialog';
 import { PopupComponent } from '../components/popup/popup.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 
 
@@ -117,6 +118,7 @@ import { PopupComponent } from '../components/popup/popup.component';
     TableComponent,
     PopupComponent,
     ChipModule,
+    ConfirmDialogModule
   ],
 })
 export class SharedUIModule {}

@@ -11,119 +11,104 @@
           <ng-icon name="ionAddOutline" />
         </label>
       </div>
-      <app-form-input
-        label="Store name"
-        inputName="name"
-        description="Enter the name of your store"
-      >
-        <input pInputText id="name" />
-      </app-form-input>
-      <app-form-input label="Slug" inputName="slug">
-        <input pInputText id="name" />
-      </app-form-input>
-      <app-form-input
-        label="Tagline/Slogan"
-        inputName="name"
-        description="Enter the name of your store"
-      >
-        <input pInputText id="name" />
-      </app-form-input>
-      <app-form-input
-        label="Store email"
-        inputName="name"
-        description="Enter the name of your store"
-      >
-        <input pInputText id="name" />
-      </app-form-input>
-      <app-form-input
-        label="Store description"
-        inputName="name"
-        description="Briefly describe your product"
-      >
-        <textarea
-          rows="5"
-          cols="30"
-          class="p-3"
-          pInputTextarea
-          [autoResize]="true"
-        ></textarea>
-      </app-form-input>
-      <p-dropdown
-        styleClass=" w-full border border-border bg-transparent mt-4"
-        panelStyleClass="bg-background text-text"
-        [options]="[]"
-        optionLabel="name"
-        placeholder="Store Category"
-      />
-      <div class="flex py-5 gap-4 items-center justify-end">
-        <app-button
-          label="Cancel"
-          styleClass="  h-8 w-14 justify-center text-red-400"
-          size="normal"
-        />
-        <app-button
-          label="Save Changes"
-          styleClass="btn-primary h-8 m-w-14 justify-center"
-          size="normal"
-        />
-      </div>
+      <form [formGroup]="storeDetails" (ngSubmit)="onUpdateStoreDetails()">
+        <app-form-input
+          label="Store name"
+          inputName="store_name"
+          description="Enter the name of your store"
+          [form]="storeDetails"
+        >
+          <input pInputText formControlName="store_name" />
+        </app-form-input>
+        <app-form-input label="Slug" inputName="slug" [form]="storeDetails">
+          <input pInputText formControlName="slug" />
+        </app-form-input>
+        <app-form-input
+          label="Tagline/Slogan"
+          inputName="tag_line"
+          description="Enter the name of your store"
+          [form]="storeDetails"
+        >
+          <input pInputText formControlName="tag_line" />
+        </app-form-input>
+        <app-form-input
+          label="Store email"
+          inputName="store_email"
+          description="Enter the email address associated with your store"
+          [form]="storeDetails"
+        >
+          <input pInputText formControlName="store_email" />
+        </app-form-input>
+        <app-form-input
+          label="Store description"
+          inputName="description"
+          description="Briefly describe your product"
+          [form]="storeDetails"
+        >
+          <textarea
+            rows="5"
+            cols="30"
+            class="p-3"
+            pInputTextarea
+            [autoResize]="true"
+            formControlName="description"
+          ></textarea>
+        </app-form-input>
+        <div class="mt-4">
+          <label class="text-xs capitalize text-text-gray pl-2"
+            >Store Category</label
+          >
+          <p-dropdown
+            styleClass=" w-full border border-border bg-transparent mt-1"
+            panelStyleClass="bg-background text-text"
+            [options]="categoryOptions"
+            optionLabel="name"
+            [filter]="true"
+            filterBy="name"
+            placeholder="Select a Category"
+            formControlName="category"
+          />
+        </div>
+
+        <div
+          *ngIf="storeDetails.dirty"
+          class="flex py-5 gap-4 items-center justify-end"
+        >
+          <app-button
+            label="Save Changes"
+            styleClass="btn-primary h-8 m-w-14 justify-center"
+            size="normal"
+            type="submit"
+            [loading]="isUpdatingStore()"
+          />
+        </div>
+      </form>
     </app-card>
   </div>
   <div class="flex-auto flex flex-col gap-5 pb-10">
     <div>
       <app-card>
-        <h3 class="font-medium">Shipping Methods</h3>
-        <div class="mt-5 flex flex-col gap-3">
-          <div
-            class="rounded-lg border border-border flex flex-col overflow-hidden"
-          >
-            <span
-              class="bg-primary-light p-2 flex justify-between items-center"
-            >
-              <small class="uppercase">Rate name</small
-              ><small class="uppercase">Shipping fee</small>
-            </span>
-            <span class="flex justify-between items-center gap-3 p-3">
-              <p class="flex-auto truncate text-xs">
-                Home Delvery within Lagos
-              </p>
-              <small class="flex-auto truncate flex justify-end">
-                {{ 5000 | currency: "NGN" }}
-              </small>
-            </span>
-          </div>
-
-          <div
-            class="rounded-lg border border-border flex flex-col overflow-hidden"
-          >
-            <span
-              class="bg-primary-light p-2 flex justify-between items-center"
-            >
-              <small class="uppercase">Rate name</small
-              ><small class="uppercase">Shipping fee</small>
-            </span>
-            <span class="flex justify-between items-center gap-3 p-3">
-              <p class="flex-auto truncate text-xs">Delvery outside Lagos</p>
-              <small class="flex-auto truncate flex justify-end">
-                {{ 8000 | currency: "NGN" }}
-              </small>
-            </span>
-          </div>
-          <app-button
-            label="Add Shipping rate"
-            icon="ionAddOutline"
-            styleClass="text-primary gap-1 flex-row-reverse"
-            (onClick)="toggleModal(true)"
-          />
-        </div>
+        <h3 class="font-medium">Shipping Rates</h3>
+        <ng-template #noShipping>
+          <p class="py-6 text-center text-text-gray text-xs">No Shipping Rates Added</p>
+        </ng-template>
         <div
-          class="flex flex-row-reverse justify-end gap-5 py-3 items-center mt-4 px-3"
+          *ngIf="store()?.shipping_options?.length; else noShipping"
+          class="mt-5 flex flex-col gap-3"
         >
-          <p-inputSwitch
-            styleClass="focus-visible:shadow-none focus-within:shadow-none "
+          <app-shippping-option
+            *ngFor="let option of store()?.shipping_options"
+            [option]="option"
+            (delete)="deleteShippingMethod($event)"
           />
-          <p class="text-sm mb-1">Allow payment on delivery?</p>
         </div>
+        <app-button
+          label="Add Shipping rate"
+          icon="ionAddOutline"
+          styleClass="text-primary gap-1 flex-row-reverse"
+          (onClick)="toggleModal(true)"
+        />
+
       </app-card>
     </div>
     <div>
@@ -141,11 +126,11 @@
           <div class="mt-4 flex flex-col gap-4">
             <p class="font-semibold">Delete Store</p>
             <p>Deleting this store permanently removes it from our platform.</p>
-             <app-button
-          label="Delete Store"
-          styleClass="bg-red-400 text-white h-10 m-w-14 justify-center mt-5"
-          size="normal"
-        />
+            <app-button
+              label="Delete Store"
+              styleClass="bg-red-400 text-white h-10 m-w-14 justify-center mt-5"
+              size="normal"
+            />
           </div>
         </div>
       </app-card>
@@ -161,19 +146,31 @@
   <div class="flex-auto" heading>
     <h2 class="font-medium">Add Shipping Rate</h2>
   </div>
-  <div class="px-5 flex flex-col gap-4">
+  <form
+    [formGroup]="shippingOptionsForm"
+    (ngSubmit)="onAddNewShippingOption()"
+    class="px-5 flex flex-col gap-4"
+  >
     <app-form-input
       label="Rate name"
       inputName="name"
       description="Your customers will see this, ensure it's clear and simple"
+      [form]="shippingOptionsForm"
     >
-      <input pInputText id="name" class="text-sm" />
+      <input pInputText formControlName="name" class="text-sm" />
     </app-form-input>
 
-    <app-form-input label="Shipping Rate" inputName="price">
+    <app-form-input
+      label="Shipping Rate"
+      inputName="price"
+      [form]="shippingOptionsForm"
+      [errorMessages]="{
+        min: 'Cannot be less than NGN100.00',
+      }"
+    >
       <p-inputNumber
+        formControlName="price"
         [min]="0"
-        inputId="price"
         mode="currency"
         class="w-full"
         currency="NGN"
@@ -181,19 +178,41 @@
         locale="en-US"
       />
     </app-form-input>
-  </div>
-  <div footer class="flex justify-end gap-4 items-center py-2 mt-5">
-    <app-button
-      label="Cancel"
-      styleClass="  h-8 w-14 justify-center text-red-400"
-      size="normal"
-      (onClick)="toggleModal(false)"
-    />
     <app-button
       label="Save"
-      styleClass="btn-primary h-8 w-14 justify-center"
-      size="normal"
-      (onClick)="toggleModal(false)"
+      styleClass="rounded-md btn-primary h-8 w-full justify-center"
+      type="submit"
+      [loading]="isUpdatingStore()"
     />
-  </div>
+  </form>
 </app-popup>
+
+<p-confirmDialog #confirmDialog>
+  <ng-template pTemplate="headless" let-message>
+    <div
+      class="flex flex-col items-center p-5 gap-3 bg-card border border-border rounded-lg"
+    >
+      <div
+        class="rounded-full bg-primary flex justify-center items-center h-[4rem] w-[4rem]"
+      >
+        <i class="pi pi-question text-2xl"></i>
+      </div>
+      <h2 class="font-bold text-lg block mb-2 mt-4">
+        {{ message.header }}
+      </h2>
+      <p class="text-xs">{{ message.message }}</p>
+      <div class="flex items-center justify-center gap-2 mt-6 w-full">
+        <app-button
+          label="Delete"
+          (onClick)="confirmDialog.accept()"
+          styleClass="text-white bg-red-500 w-20 justify-center"
+        />
+        <app-button
+          label="Cancel"
+          (onClick)="confirmDialog.reject()"
+          styleClass="text-primary border border-primary w-20 justify-center"
+        />
+      </div>
+    </div>
+  </ng-template>
+</p-confirmDialog>

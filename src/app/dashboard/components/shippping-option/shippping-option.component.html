@@ -1,0 +1,22 @@
+<div class="rounded-lg border border-border flex flex-col overflow-hidden">
+  <span class="bg-primary-light p-2 justify-between flex gap-2 items-center">
+    <small class="uppercase w-1/2">Rate name</small
+    ><small class="uppercase w-[40%]">Shipping fee</small>
+    <span class="w-[10%]"></span>
+  </span>
+  <span class="flex justify-between items-center gap-2 p-3">
+    <p class="truncate text-xs w-[50%]">
+      {{ option.name }}
+    </p>
+    <p class="truncate text-xs flex flex-auto">
+      {{ option.price | currency: "NGN" }}
+    </p>
+    <span class="flex justify-end w-[10%]">
+      <button type="button" class="text-red-500 text-xs" (click)="handleDelete()">
+        Delete
+      </button>
+    </span>
+  </span>
+</div>
+
+
