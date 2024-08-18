@@ -1,9 +1,8 @@
-import { Component, computed, effect, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { StoreService } from '../../../services/store.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ConfirmationService, MessageService } from 'primeng/api';
-import { ErrorResponse } from '../../../types';
-import { ShippingOption, Store, categories } from '../../../models/store.models';
+import { ConfirmationService } from 'primeng/api';
+import { Store, categories } from '../../../models/store.models';
 
 @Component({
   selector: 'app-store-details',
@@ -21,7 +20,6 @@ export class StoreDetailsComponent {
   constructor(
     private storeService: StoreService,
     private fb: FormBuilder,
-    private toast: MessageService,
     private confirmation: ConfirmationService,
   ) {
     this.categoryOptions = categories;
@@ -42,28 +40,12 @@ export class StoreDetailsComponent {
       name: ['', [Validators.required]],
       price: [null, [Validators.required, Validators.min(100)]],
     });
-
   }
 
   handleUpdateStore(data: Partial<Store>) {
     this.isUpdatingStore.set(true);
     this.storeService.updateStoreDetails(data).subscribe({
-      next: (response) => {
-        this.toast.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: response.message,
-        });
-        this.isUpdatingStore.set(false);
-      },
-      error: (err: ErrorResponse) => {
-        this.toast.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: err.message,
-        });
-        this.isUpdatingStore.set(false);
-      },
+      complete: () => this.isUpdatingStore.set(false),
     });
   }
 
@@ -85,23 +67,7 @@ export class StoreDetailsComponent {
       this.storeService
         .addShippingMethod(this.shippingOptionsForm.value)
         .subscribe({
-          next: (response) => {
-            this.toast.add({
-              severity: 'success',
-              summary: 'Success',
-              detail: response.message,
-            });
-            this.isUpdatingStore.set(false);
-            this.toggleModal(false);
-          },
-          error: (err: ErrorResponse) => {
-            this.toast.add({
-              severity: 'error',
-              summary: 'Error',
-              detail: err.message,
-            });
-            this.isUpdatingStore.set(false);
-          },
+          complete: () => this.isUpdatingStore.set(false),
         });
     } else {
       this.shippingOptionsForm.markAllAsTouched();
@@ -109,32 +75,17 @@ export class StoreDetailsComponent {
   }
 
   deleteShippingMethod(id: string) {
-     this.confirmation.confirm({
-       header: 'Delete Shipping Option?',
-       message: 'Are you sure you want to delete this shipping option?',
-       accept: () => {
+    this.confirmation.confirm({
+      header: 'Delete Shipping Option?',
+      message: 'Are you sure you want to delete this shipping option?',
+      accept: () => {
         this.isUpdatingStore.set(true);
         this.storeService.deleteShippingMethod(id).subscribe({
-          next: (response) => {
-            this.toast.add({
-              severity: 'success',
-              summary: 'Success',
-              detail: response.message,
-            });
-            this.isUpdatingStore.set(false);
-          },
-          error: (err: ErrorResponse) => {
-            this.toast.add({
-              severity: 'error',
-              summary: 'Error',
-              detail: err.message,
-            });
-            this.isUpdatingStore.set(false);
-          },
+          complete: () => this.isUpdatingStore.set(false),
         });
-       },
-       reject: () => {},
-     });
+      },
+      reject: () => {},
+    });
   }
 
   toggleModal(value: boolean) {

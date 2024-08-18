@@ -50,6 +50,8 @@ import { TableComponent } from '../components/table/table.component';
 import { DialogModule } from 'primeng/dialog';
 import { PopupComponent } from '../components/popup/popup.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmDeletePopupComponent } from '../components/confirm-delete-popup/confirm-delete-popup.component';
+
 
 
 
@@ -59,6 +61,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     ButtonComponent,
     TableComponent,
     PopupComponent,
+    ConfirmDeletePopupComponent,
   ],
   imports: [
     ButtonModule,
@@ -103,9 +106,11 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
       ionLogoFacebook,
     }),
     DialogModule,
+    ConfirmDialogModule,
   ],
   exports: [
     ButtonModule,
+    ConfirmDialogModule,
     RippleModule,
     SidebarModule,
     CarouselModule,
@@ -118,7 +123,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     TableComponent,
     PopupComponent,
     ChipModule,
-    ConfirmDialogModule
+    ConfirmDeletePopupComponent,
   ],
 })
 export class SharedUIModule {}

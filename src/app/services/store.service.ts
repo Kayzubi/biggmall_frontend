@@ -3,7 +3,8 @@ import { ApiService } from './api.service';
 import { SuccessHttpResponse } from '../types';
 import { Observable, catchError, tap, throwError } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Coupon, ShippingOption, Store } from '../models/store.models';
+import { Banner, Coupon, ShippingOption, Store } from '../models/store.models';
+import { MessageService } from 'primeng/api';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,10 @@ import { Coupon, ShippingOption, Store } from '../models/store.models';
 export class StoreService {
   store = signal<Store | null>(null);
 
-  constructor(private api: ApiService) {}
+  constructor(
+    private api: ApiService,
+    private toast: MessageService,
+  ) {}
 
   setStoreData(data: Store | null) {
     this.store.set(data);
@@ -38,8 +42,22 @@ export class StoreService {
 
   updateStoreDetails(data: Partial<Store>) {
     return this.api.patch<SuccessHttpResponse<Store>>('/store', data, {}).pipe(
-      tap((response) => this.setStoreData(response.data)),
-      catchError((error: HttpErrorResponse) => throwError(error.error)),
+      tap((response) => {
+        this.setStoreData(response.data);
+        this.toast.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: response.message,
+        });
+      }),
+      catchError((error: HttpErrorResponse) => {
+        this.toast.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: error.error.message,
+        });
+        return error.error;
+      }),
     );
   }
 
@@ -49,8 +67,22 @@ export class StoreService {
         SuccessHttpResponse<Store>
       >('/store/shipping-methods/add', data, {})
       .pipe(
-        tap((response) => this.setStoreData(response.data)),
-        catchError((error: HttpErrorResponse) => throwError(error.error)),
+        tap((response) => {
+          this.setStoreData(response.data);
+          this.toast.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: response.message,
+          });
+        }),
+        catchError((error: HttpErrorResponse) => {
+          this.toast.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: error.error.message,
+          });
+          return error.error;
+        }),
       );
   }
 
@@ -60,8 +92,22 @@ export class StoreService {
         SuccessHttpResponse<Store>
       >(`/store/shipping-methods/delete/${id}`, {}, {})
       .pipe(
-        tap((response) => this.setStoreData(response.data)),
-        catchError((error: HttpErrorResponse) => throwError(error.error)),
+        tap((response) => {
+          this.setStoreData(response.data);
+          this.toast.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: response.message,
+          });
+        }),
+        catchError((error: HttpErrorResponse) => {
+          this.toast.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: error.error.message,
+          });
+          return error.error;
+        }),
       );
   }
 
@@ -69,8 +115,22 @@ export class StoreService {
     return this.api
       .patch<SuccessHttpResponse<Store>>('/store/coupon/add', data, {})
       .pipe(
-        tap((response) => this.setStoreData(response.data)),
-        catchError((error: HttpErrorResponse) => throwError(error.error)),
+        tap((response) => {
+          this.setStoreData(response.data);
+          this.toast.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: response.message,
+          });
+        }),
+        catchError((error: HttpErrorResponse) => {
+          this.toast.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: error.error.message,
+          });
+          return error.error;
+        }),
       );
   }
 
@@ -78,8 +138,68 @@ export class StoreService {
     return this.api
       .patch<SuccessHttpResponse<Store>>(`/store/coupon/delete/${id}`, {}, {})
       .pipe(
-        tap((response) => this.setStoreData(response.data)),
-        catchError((error: HttpErrorResponse) => throwError(error.error)),
+        tap((response) => {
+          this.setStoreData(response.data);
+          this.toast.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: response.message,
+          });
+        }),
+        catchError((error: HttpErrorResponse) => {
+          this.toast.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: error.error.message,
+          });
+          return error.error;
+        }),
+      );
+  }
+
+  addSiteBanner(data: Partial<Banner>) {
+    return this.api
+      .patch<SuccessHttpResponse<Store>>('/store/banners/add', data, {})
+      .pipe(
+        tap((response) => {
+          this.setStoreData(response.data);
+          this.toast.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: response.message,
+          });
+        }),
+        catchError((error: HttpErrorResponse) => {
+          this.toast.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: error.error.message,
+          });
+          return error.error;
+        }),
+      );
+  }
+
+  deleteSiteBanner(id: string) {
+    return this.api
+      .patch<SuccessHttpResponse<Store>>(`/store/banners/delete/${id}`, {}, {})
+      .pipe(
+        tap((response) => {
+          this.setStoreData(response.data);
+          this.toast.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: response.message,
+          });
+        }),
+        catchError((error: HttpErrorResponse) => {
+          this.toast.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: error.error.message,
+          });
+          return error.error;
+        }),
       );
   }
 }

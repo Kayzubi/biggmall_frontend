@@ -3,7 +3,7 @@
 }
 
 :host ::ng-deep textarea {
-  @apply w-full bg-transparent border border-border rounded-lg h-12 px-2 resize-none text-text;
+  @apply w-full bg-transparent border border-border rounded-lg px-2 resize-none text-text;
 }
 
 .invalid span {

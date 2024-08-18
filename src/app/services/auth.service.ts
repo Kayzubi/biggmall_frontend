@@ -52,7 +52,7 @@ export class AuthService {
       );
   }
 
-  handleAuthentication(user: User, store: Store | null, token?: string) {
+private handleAuthentication(user: User, store: Store | null, token?: string) {
     this.user.set(user);
     if(token) localStorage.setItem('biggmall_token', token);
     this.storeService.setStoreData(store);

@@ -18,7 +18,9 @@ type Position = 'center'
 export class PopupComponent {
   @Input() position: Position = 'center'
   @Input({ required: true}) visible!: boolean
+  @Input() maxWidth?: string = '25rem'
   @Output() showModal = new EventEmitter<boolean>()
+
 
 
   toggleModal(event: boolean) {

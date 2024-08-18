@@ -2,8 +2,7 @@ import { Component, OnInit, computed, signal } from '@angular/core';
 
 import { MenuItem } from 'primeng/api';
 import { AuthService } from '../services/auth.service';
-import { User } from '../models/auth.models';
-
+import { DashboardTheme, User } from '../models/auth.models';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,32 +12,32 @@ import { User } from '../models/auth.models';
 export class DashboardComponent implements OnInit {
   loading: boolean = false;
   themeOptions: MenuItem[];
-  user = computed( () => this.authService.user());
-  theme: 'light' | 'dark' | 'dark-blue' = this.user()?.dashboard_theme ?? 'light';
+  user = computed(() => this.authService.user());
 
   constructor(private authService: AuthService) {
-
     this.themeOptions = [
       {
         label: 'Light',
         command: () => {
-          this.theme = 'light';
+          this.handleUpdateUserTheme('light');
         },
       },
       {
         label: 'Dark',
         command: () => {
-          this.theme = 'dark';
+          this.handleUpdateUserTheme('dark');
         },
       },
       {
         label: 'Blue',
         command: () => {
-          this.theme = 'dark-blue';
+          this.handleUpdateUserTheme('dark-blue');
         },
       },
     ];
   }
+
+  handleUpdateUserTheme(theme: DashboardTheme) {}
 
   ngOnInit(): void {
     if (!this.authService.user()) {

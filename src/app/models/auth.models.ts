@@ -8,14 +8,14 @@ export interface AuthResponse {
   store: Store;
 }
 
-
+export type DashboardTheme = 'light' | 'dark' | 'dark-blue';
 export interface User {
   _id: string;
   name: string;
   email: string;
   role: string;
-  dashboard_theme: 'light' | 'dark' | 'dark-blue';
-  createdAt: string;
+  dashboard_theme: DashboardTheme
+  createdAt: string
   updatedAt: string;
   __v: number;
   active_store: string;

@@ -1,0 +1,29 @@
+<p-confirmDialog #confirmDialog>
+  <ng-template pTemplate="headless" let-message>
+    <div
+      class="flex flex-col items-center p-5 gap-3 bg-card border border-border rounded-lg"
+    >
+      <div
+        class="rounded-full bg-primary flex justify-center items-center h-[4rem] w-[4rem]"
+      >
+        <i class="pi pi-question text-2xl"></i>
+      </div>
+      <h2 class="font-bold text-lg block mb-2 mt-4">
+        {{ message.header }}
+      </h2>
+      <p class="text-xs">{{ message.message }}</p>
+      <div class="flex items-center justify-center gap-2 mt-6 w-full">
+        <app-button
+          label="Delete"
+          (onClick)="confirmDialog.accept()"
+          styleClass="text-white bg-red-500 w-20 justify-center"
+        />
+        <app-button
+          label="Cancel"
+          (onClick)="confirmDialog.reject()"
+          styleClass="text-text border border-text w-20 justify-center"
+        />
+      </div>
+    </div>
+  </ng-template>
+</p-confirmDialog>

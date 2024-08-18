@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ThemeOptions } from '../../storefront/theme/theme.component';
+import { ThemeOptions } from '../../../models/store.models';
 
 @Component({
   selector: 'app-theme-item',
@@ -10,13 +10,14 @@ export class ThemeItemComponent {
   @Input({ required: true }) theme!: ThemeOptions
 
   @Input({ required: true }) activeTheme!: ThemeOptions
+  @Input() loading?: boolean
 
   @Output() selectTheme = new EventEmitter<
     'minimal' | 'trendy' | 'classic' | 'retro' | 'antique'
   >();
 
 
-  onThemeSelect(arg: ThemeOptions) {
-    this.selectTheme.emit(arg)
+  onThemeSelect() {
+    this.selectTheme.emit(this.theme)
   }
 }

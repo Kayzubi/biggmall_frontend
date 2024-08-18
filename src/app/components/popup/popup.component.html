@@ -2,7 +2,7 @@
   [modal]="true"
   [visible]="visible"
   [position]="position"
-  [style]="{ width: '25rem' }"
+  [style]="{ width: '80%', maxWidth: maxWidth }"
 >
   <ng-template pTemplate="headless">
     <div class="bg-card rounded-md border border-border p-5">
@@ -11,7 +11,7 @@
         <button
           pButton
           (click)="toggleModal(false)"
-          class="rounded-full border border-red-400 text-red-400 w-6 h-6 items-center justify-center mt-auto hover:bg-red-400 hover:text-white"
+          class="rounded-full ml-auto border border-red-400 text-red-400 w-6 h-6 items-center justify-center mt-auto hover:bg-red-400 hover:text-white"
         >
           <ng-icon name="ionCloseOutline" />
         </button>

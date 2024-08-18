@@ -4,35 +4,49 @@
     <app-theme-item
       *ngFor="let theme of themes"
       [theme]="theme"
-      [activeTheme]="activeTheme"
+      [activeTheme]="store()?.theme?.active_theme ?? 'trendy'"
       (selectTheme)="selectNewTheme($event)"
     />
     <div class="p-3">
       <app-card>
         <p class="font-medium">Theme Settings</p>
-        <div class="grid grid-cols-2 items-center gap-2 mt-5">
-          <label for="">Primary color:</label>
-          <div
-            class="flex gap-2 items-center bg-background py-1 px-2 rounded-md max-w-[400px]"
-          >
-            <span class="p-1 rounded-md bg-card">
-              <p-colorPicker [(ngModel)]="primaryColor" />
-            </span>
-            <input pInputText [(ngModel)]="primaryColor" class="flex-auto" />
+        <div class="flex flex-col">
+          <div class="grid grid-cols-2 items-center gap-2 mt-5">
+            <label for="">Primary color:</label>
+            <div
+              class="flex gap-2 items-center bg-background py-1 px-2 rounded-md max-w-[400px]"
+            >
+              <span class="p-1 rounded-md bg-card">
+                <p-colorPicker [(ngModel)]="primary" />
+              </span>
+              <input pInputText [(ngModel)]="primary" class="flex-auto" />
+            </div>
           </div>
-        </div>
-        <div class="grid grid-cols-2 items-center gap-2 my-5">
-          <label for="">Secondary color:</label>
-          <div
-            class="flex gap-2 items-center bg-background py-1 px-2 rounded-md max-w-[400px]"
-          >
-            <span class="p-1 rounded-md bg-card">
-              <p-colorPicker [(ngModel)]="secondaryColor" />
-            </span>
-            <input pInputText [(ngModel)]="secondaryColor" class="flex-auto" />
+          <div class="grid grid-cols-2 items-center gap-2 my-5">
+            <label for="">Secondary color:</label>
+            <div
+              class="flex gap-2 items-center bg-background py-1 px-2 rounded-md max-w-[400px]"
+            >
+              <span class="p-1 rounded-md bg-card">
+                <p-colorPicker [(ngModel)]="secondary" />
+              </span>
+              <input pInputText [(ngModel)]="secondary" class="flex-auto" />
+            </div>
           </div>
+          <span class="w-max flex items-center gap-3">
+            <app-button
+              label="Save Changes"
+              styleClass="btn-primary justify-center"
+              [loading]="loadingTheme()"
+              (onClick)="onSubmitStoreThemeColors()"
+            />
+            <app-button
+              label="Reset"
+              styleClass=" text-red-400 justify-center"
+              (onClick)="resetColors()"
+            />
+          </span>
         </div>
-        <app-button label="Save Changes" styleClass="btn-primary" />
       </app-card>
     </div>
   </div>
@@ -40,29 +54,35 @@
   <div class="px-3 mt-3">
     <app-card>
       <div
-        *ngIf="banners.length; else noBanners"
-        class=" grid grid-cols-3 gap-2 justify-center w-full md:grid-cols-1 sm:grid-cols-1"
+        *ngIf="store()?.banners?.length; else noBanners"
+        class="grid grid-cols-3 gap-2 justify-center w-full md:grid-cols-1 sm:grid-cols-1"
       >
-        <div
-          *ngFor="let banner of banners"
-
-        >
-        <div class=" flex border border-border bg-background rounded-lg h-[200px] overflow-hidden">
-          <div class="bg-gray-200 w-1/2 h-full"></div>
-          <div class=" py-5 flex flex-col gap-2 px-3 w-1/2">
-            <p>Banner {{ banner }}</p>
-            <small
-               class="truncate">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse,
-              soluta?</small
-            >
-            <span class="mt-auto">
-              <app-button icon="ionTrashBinOutline" label="Remove" styleClass=" text-red-400 uppercase flex-row-reverse gap-2" />
-
-            </span>
+        <div *ngFor="let banner of store()?.banners">
+          <div
+            class="flex border border-border bg-background rounded-lg h-[200px] overflow-hidden"
+          >
+            <div class="bg-gray-200 w-1/2 h-full"></div>
+            <div class="py-5 flex flex-col gap-2 px-3 w-1/2">
+              <p class="truncate">{{ banner.header }}</p>
+              <small class="truncate">{{ banner.sub_text }}</small>
+              <span class="mt-auto">
+                <app-button
+                  icon="ionTrashBinOutline"
+                  label="Remove"
+                  styleClass=" text-red-400 uppercase flex-row-reverse gap-2"
+                  (onClick)="deleteBannerItem(banner._id)"
+                />
+              </span>
+            </div>
           </div>
         </div>
-
-        </div>
+        <div *ngIf="storeBannersLength < 3" class=" flex flex-col items-center justify-center">
+        <app-button
+            size="extralarge"
+            icon="ionAddOutline"
+            styleClass="text-primary"
+            (onClick)="toggleModal(true)"
+          /> <p class="text-primary cursor-pointer" (click)="toggleModal(true)">Add New</p> </div>
       </div>
       <ng-template #noBanners>
         <div class="flex flex-col items-center justify-center py-">
@@ -70,6 +90,7 @@
             size="extralarge"
             icon="ionAddOutline"
             styleClass="text-primary"
+            (onClick)="toggleModal(true)"
           />
           <h3 class="uppercase text-lg text-gray-400">
             Set Default banner(s) for your store.
@@ -82,3 +103,38 @@
     </app-card>
   </div>
 </section>
+
+<app-popup (showModal)="toggleModal($event)" [visible]="showModal()" maxWidth="40rem" position="top">
+  <div heading>
+    <h1 class="font-semibold text-lg">Add New Banner</h1>
+  </div>
+  <div>
+    <form class=" mt-5 flex flex-col gap-4" [formGroup]="addBannerForm" (ngSubmit)="onSubmitNewBanner()">
+      <small>Banner Image:</small>
+      <label class="flex justify-center text-2xl text-primary rounded-md items-center h-32 border border-dashed border-primary">
+          <ng-icon name="ionAddOutline" />
+          <input type="file" class=" hidden" />
+      </label>
+      <app-form-input label="Header" inputName="header" [form]="addBannerForm">
+        <input pInputText formControlName="header" />
+      </app-form-input>
+      <app-form-input label="Sub Text" inputName="sub_text">
+          <textarea
+          rows="3"
+            cols="30"
+            class="p-3"
+            formControlName="sub_text"
+            pInputTextarea
+          ></textarea>
+      </app-form-input>
+
+        <app-button
+            label="Submit"
+            styleClass=" w-full btn-primary justify-center"
+            type="submit"
+            [loading]="updatingBanner()"
+          />
+    </form>
+  </div>
+</app-popup>
+

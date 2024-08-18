@@ -6,11 +6,17 @@ import { Component } from '@angular/core';
   styleUrl: './themes-section.component.scss',
 })
 export class ThemesSectionComponent {
-  themes: number[];
+  themes: string[];
   responsiveOptions: any[]
 
   constructor() {
-    this.themes = Array.from({ length: 7 }).map((_, index) => index + 1);
+    this.themes = [
+      'antique',
+      'classic',
+      'minimal',
+      'retro',
+      'trendy',
+    ]
 
     this.responsiveOptions = [
       {
