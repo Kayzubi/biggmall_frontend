@@ -1,6 +1,7 @@
 import { Component, computed, signal } from '@angular/core';
 import { StoreService } from '../../services/store.service';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-discounts',
@@ -20,6 +21,7 @@ export class DiscountsComponent {
   constructor(
     private storeService: StoreService,
     private fb: FormBuilder,
+    private confirmation: ConfirmationService
   ) {
     this.showModal = false;
     this.addDiscountForm = fb.group(
@@ -89,6 +91,22 @@ export class DiscountsComponent {
     } else {
       this.addDiscountForm.markAllAsTouched();
     }
+  }
+
+
+
+  deleteDiscountCode(id: string) {
+    this.confirmation.confirm({
+      header: 'Delete Discount Code',
+      message: 'Are you sure you want to delete this discount code?',
+      accept: () => {
+         this.isLoading.set(true);
+         this.storeService.deleteDiscountCode(id).subscribe({
+           complete: () => this.isLoading.set(false),
+         });
+      },
+      reject: () => {}
+    })
   }
 
   toggleModal(value: boolean) {
