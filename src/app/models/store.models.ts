@@ -12,7 +12,7 @@ export interface Store {
   store_email: string;
   store_url: string;
   location: string;
-  categories: string[];
+  categories: Category[];
   allow_pay_on_delivery: boolean;
   socials: Social[];
   coupons: Coupon[];
@@ -52,6 +52,13 @@ export interface RemitanceAccount {
 export interface SetupGuide {
   is_complete: boolean;
   last_step: number;
+}
+
+export interface Category {
+  name: string;
+  media: string
+  slug: string
+  _id: string
 }
 
 export interface ShippingOption {

@@ -3,7 +3,7 @@ import { ApiService } from './api.service';
 import { SuccessHttpResponse } from '../types';
 import { Observable, catchError, tap, throwError } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Banner, Coupon, ShippingOption, Store } from '../models/store.models';
+import { Banner, Category, Coupon, ShippingOption, Store } from '../models/store.models';
 import { MessageService } from 'primeng/api';
 
 @Injectable({
@@ -91,6 +91,52 @@ export class StoreService {
       .patch<
         SuccessHttpResponse<Store>
       >(`/store/shipping-methods/delete/${id}`, {}, {})
+      .pipe(
+        tap((response) => {
+          this.setStoreData(response.data);
+          this.toast.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: response.message,
+          });
+        }),
+        catchError((error: HttpErrorResponse) => {
+          this.toast.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: error.error.message,
+          });
+          return error.error;
+        }),
+      );
+  }
+
+  addProductCategory(data: Partial<Category>) {
+    return this.api
+      .patch<SuccessHttpResponse<Store>>('/store/product-categories/add', data, {})
+      .pipe(
+        tap((response) => {
+          this.setStoreData(response.data);
+          this.toast.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: response.message,
+          });
+        }),
+        catchError((error: HttpErrorResponse) => {
+          this.toast.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: error.error.message,
+          });
+          return error.error;
+        }),
+      );
+  }
+
+  deleteProductCategory(id: string) {
+    return this.api
+      .patch<SuccessHttpResponse<Store>>(`/store/product-categories/delete/${id}`, {}, {})
       .pipe(
         tap((response) => {
           this.setStoreData(response.data);

@@ -37,6 +37,11 @@ export class DashboardComponent implements OnInit {
     ];
   }
 
+
+  get theme() {
+    return this.user()?.dashboard_theme ?? 'light'
+  }
+
   handleUpdateUserTheme(theme: DashboardTheme) {}
 
   ngOnInit(): void {
@@ -44,8 +49,8 @@ export class DashboardComponent implements OnInit {
       this.loading = true;
 
       this.authService.retrieveUserSession().subscribe({
+        error: () => this.loading = false,
         complete: () => this.loading = false
-
       });
     }
   }

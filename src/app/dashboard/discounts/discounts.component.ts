@@ -50,7 +50,7 @@ export class DiscountsComponent {
     const discountType = this.addDiscountForm?.get('discount_type')?.value;
 
     if (discountType === 'fixed') {
-      return control.value > 0 ? null : { invalidFixedValue: true };
+      return control.value > 99 ? null : { invalidFixedValue: true };
     } else if (discountType === 'percentage') {
       return control.value > 0 && control.value <= 100
         ? null
