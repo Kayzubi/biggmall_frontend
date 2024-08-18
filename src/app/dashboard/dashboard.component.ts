@@ -44,12 +44,8 @@ export class DashboardComponent implements OnInit {
       this.loading = true;
 
       this.authService.retrieveUserSession().subscribe({
-        next: () => {
-          this.loading = false;
-        },
-        error: () => {
-          this.loading = false;
-        },
+        complete: () => this.loading = false
+
       });
     }
   }

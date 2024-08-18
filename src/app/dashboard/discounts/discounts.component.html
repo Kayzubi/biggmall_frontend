@@ -15,25 +15,38 @@
       />
     </div>
     <div body>
-      <div
-        class="grid grid-cols-5 p-4 text-xs cursor-pointer hover:bg-background"
-      >
-        <div class="flex items-center">#QWE1GH</div>
-        <div class="flex items-center">
-          <p class="max-w-[200px] truncate text-xs">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla,
-            autem.
-          </p>
-        </div>
-        <div class="flex items-center">24/01/2023 &commat; 8:21am</div>
-        <div class="flex items-center">24/02/2023 &commat; 8:21am</div>
-        <div class="flex items-center gap-2">
-          <button pButton class="font-normal text-white bg-red-400 gap-1 flex p-2">
-            <ng-icon name="ionTrashBinOutline"></ng-icon>
-            Delete
-          </button>
+      <div *ngIf="discountCodes.length; else noCodes">
+        <div
+          *ngFor="let coupon of discountCodes"
+          class="grid grid-cols-5 p-4 text-xs cursor-pointer hover:bg-background"
+        >
+          <div class="flex items-center">{{ coupon.code }}</div>
+          <div class="flex items-center">
+            <p class="max-w-[200px] truncate text-xs">
+              {{ coupon.discount_type === 'percentage' ?   coupon.value + '%' :   coupon.value | currency: 'NGN'  }} on all orders.
+            </p>
+          </div>
+          <div class="flex items-center">
+            Starts: {{ coupon.start_date | date: "shortDate" }}
+          </div>
+          <div class="flex items-center">
+            Expires: {{!coupon.end_Date ? 'Never' : coupon.end_Date | date: "shortDate" }}
+
+          </div>
+          <div class="flex items-center gap-2">
+            <button
+              pButton
+              class="font-normal text-white bg-red-400 gap-1 flex p-2"
+            >
+              <ng-icon name="ionTrashBinOutline"></ng-icon>
+              Delete
+            </button>
+          </div>
         </div>
       </div>
+      <ng-template #noCodes>
+        <p class="flex h-32 items-center justify-center">No Discount Codes</p>
+      </ng-template>
     </div>
   </app-table>
 </app-card>
@@ -46,9 +59,17 @@
   <div class="flex-auto" heading>
     <h2 class="font-medium">Create Discount Code</h2>
   </div>
-  <div class="px-5 flex flex-col gap-1">
-    <app-form-input label="Discount Code" inputName="name">
-      <input pInputText id="name" class="text-sm" />
+  <form
+    class="px-5 flex flex-col gap-1"
+    [formGroup]="addDiscountForm"
+    (ngSubmit)="onSubmitAddDiscountCode()"
+  >
+    <app-form-input
+      label="Discount Code"
+      inputName="code"
+      [form]="addDiscountForm"
+    >
+      <input pInputText formControlName="code" class="text-sm" />
     </app-form-input>
 
     <div class="flex items-center gap-2 py-3">
@@ -56,50 +77,83 @@
 
       <div class="flex items-center">
         <p-radioButton
-          name="discount"
+          name="discount_type"
           value="fixed"
-          [(ngModel)]="discountType"
           inputId="fixed"
+          formControlName="discount_type"
         />
         <label for="fixed" class="ml-2"> Fixed </label>
       </div>
 
       <div class="flex items-center">
         <p-radioButton
-          name="discount"
+          name="discount_type"
           value="percentage"
-          [(ngModel)]="discountType"
           inputId="percentage"
+          formControlName="discount_type"
         />
         <label for="percentage" class="ml-2"> Percentage </label>
       </div>
     </div>
 
-    <app-form-input *ngIf="discountType" [ngSwitch]="discountType" label="Discount Value" inputName="name">
-        <p-inputNumber
-          [min]="0"
-          inputId="price"
-          mode="currency"
-          class="w-full"
-          currency="NGN"
-          styleClass=" w-full"
-          locale="en-US"
-          *ngSwitchCase="'fixed'"
-        />
+    <app-form-input
+      *ngIf="addDiscountForm.controls['discount_type'].value"
+      [ngSwitch]="addDiscountForm.controls['discount_type'].value"
+      label="Discount Value"
+      [form]="addDiscountForm"
+      [errorMessages]="{
+        invalidFixedValue: 'Value cannot be less than NGN100',
+        invalidPercentageValue: 'Value must be between 1% - 100%',
+      }"
+      inputName="value"
+    >
+      <p-inputNumber
+        [min]="0"
+        inputId="price"
+        mode="currency"
+        class="w-full"
+        currency="NGN"
+        styleClass=" w-full"
+        locale="en-US"
+        formControlName="value"
+        *ngSwitchCase="'fixed'"
+      />
 
-        <p-inputNumber
-          [min]="0"
-          class="w-full"
-          styleClass=" w-full"
-          inputId="percent"
-          prefix="%"
-          *ngSwitchCase="'percentage'"
-        />
+      <p-inputNumber
+        [min]="0"
+        class="w-full"
+        styleClass=" w-full"
+        inputId="percent"
+        suffix="%"
+        formControlName="value"
+        *ngSwitchCase="'percentage'"
+      />
     </app-form-input>
 
-    <app-form-input label="Start Date" inputName="name">
+    <app-form-input
+      label="Start Date"
+      inputName="start_date"
+      [form]="addDiscountForm"
+    >
       <p-calendar
-        [(ngModel)]="startDate"
+        formControlName="start_date"
+        [iconDisplay]="'input'"
+        [showIcon]="true"
+        styleClass="w-full"
+        inputId="icondisplay"
+      />
+    </app-form-input>
+     <div *ngIf="addDiscountForm.hasError('startDateInPast')" class="text-xs text-red-500">
+      Start date cannot be in the past.
+    </div>
+
+    <app-form-input
+      label="End Date"
+      inputName="end_date"
+      [form]="addDiscountForm"
+    >
+      <p-calendar
+        formControlName="end_date"
         [iconDisplay]="'input'"
         [showIcon]="true"
         styleClass="w-full"
@@ -107,28 +161,25 @@
       />
     </app-form-input>
 
-    <app-form-input label="End Date" inputName="name">
-      <p-calendar
-        [(ngModel)]="endDate"
-        [iconDisplay]="'input'"
-        [showIcon]="true"
-        styleClass="w-full"
-        inputId="icondisplay"
+    <div *ngIf="addDiscountForm.hasError('invalidDateRange')" class="text-xs text-red-500">
+      End date must be after the start date.
+    </div>
+
+
+    <div class="flex gap-5 py-3 items-center mt-4 px-3">
+      <p class="text-sm mb-1">Show on Website?</p>
+      <p-inputSwitch
+        styleClass="focus-visible:shadow-none focus-within:shadow-none "
+        formControlName="show_on_site"
       />
-    </app-form-input>
-  </div>
-  <div footer class="flex justify-end gap-4 items-center py-2 mt-5">
+    </div>
+
     <app-button
-      label="Cancel"
-      styleClass="  h-8 w-14 justify-center text-red-400"
+      label="Submit"
+      type="submit"
+      styleClass="btn-primary w-full mt-4 justify-center"
       size="normal"
-      (onClick)="toggleModal(false)"
+      [loading]="isLoading()"
     />
-    <app-button
-      label="Save Category"
-      styleClass="btn-primary h-8 m-w-14 justify-center"
-      size="normal"
-      (onClick)="toggleModal(false)"
-    />
-  </div>
+  </form>
 </app-popup>

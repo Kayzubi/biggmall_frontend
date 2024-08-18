@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
+import { StoreService } from '../../services/store.service';
+import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-discounts',
@@ -7,24 +9,90 @@ import { Component } from '@angular/core';
 })
 export class DiscountsComponent {
   showModal: boolean;
-  showAddModal: boolean;
+  isLoading = signal<boolean>(false)
 
+  startDate: Date | undefined;
+  endDate: Date | undefined;
+  discountType!: 'fixed' | 'percentage';
+  store = computed(() => this.storeService.store());
+  addDiscountForm: FormGroup;
 
-  startDate: Date | undefined
-  endDate: Date | undefined
-  discountType!: 'fixed' | 'percentage'
-
-
-  constructor() {
+  constructor(
+    private storeService: StoreService,
+    private fb: FormBuilder,
+  ) {
     this.showModal = false;
-    this.showAddModal = false;
+    this.addDiscountForm = fb.group(
+      {
+        code: ['', [Validators.required]],
+        discount_type: ['fixed', [Validators.required]],
+        value: [
+          null,
+          [Validators.required, this.discountValueValidator.bind(this)],
+        ],
+        start_date: ['', [Validators.required]],
+        end_date: [''],
+        show_on_site: [false],
+      },
+      { validators: this.dateRangeValidator },
+    );
+
+    this.addDiscountForm.get('discount_type')?.valueChanges.subscribe(() => {
+      this.addDiscountForm.get('value')?.updateValueAndValidity();
+    });
+  }
+
+  discountValueValidator(
+    control: AbstractControl,
+  ): { [key: string]: any } | null {
+    const discountType = this.addDiscountForm?.get('discount_type')?.value;
+
+    if (discountType === 'fixed') {
+      return control.value > 0 ? null : { invalidFixedValue: true };
+    } else if (discountType === 'percentage') {
+      return control.value > 0 && control.value <= 100
+        ? null
+        : { invalidPercentageValue: true };
+    }
+
+    return null;
+  }
+
+  dateRangeValidator: ValidatorFn = (
+    group: AbstractControl,
+  ): { [key: string]: any } | null => {
+    const startDate = group.get('start_date')?.value;
+    const endDate = group.get('end_date')?.value;
+
+    if (startDate && endDate && new Date(startDate) > new Date(endDate)) {
+      return { invalidDateRange: true };
+    }
+
+    if (startDate && new Date(startDate) < new Date()) {
+      return { startDateInPast: true };
+    }
+
+    return null;
+  };
+
+  get discountCodes() {
+    return this.store()?.coupons ?? [];
+  }
+
+  onSubmitAddDiscountCode() {
+    if (this.addDiscountForm.valid) {
+      this.isLoading.set(true)
+      this.storeService.addDiscountCode(this.addDiscountForm.value).subscribe({
+        next: () => this.toggleModal(false),
+        complete: () => this.isLoading.set(false)
+      });
+    } else {
+      this.addDiscountForm.markAllAsTouched();
+    }
   }
 
   toggleModal(value: boolean) {
     this.showModal = value;
-  }
-
-  toggleAddModal(value: boolean) {
-    this.showAddModal = value;
+    this.addDiscountForm.reset()
   }
 }

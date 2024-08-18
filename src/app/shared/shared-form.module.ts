@@ -26,7 +26,14 @@ import { FormInputErrorComponent } from "../components/form-input-error/form-inp
 
 @NgModule({
   declarations: [FormInputComponent, FormInputErrorComponent],
-  imports: [InputTextModule, FloatLabelModule, CommonModule, ReactiveFormsModule, FormsModule],
+  imports: [
+    InputTextModule,
+    FloatLabelModule,
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    RadioButtonModule,
+  ],
   exports: [
     FormInputComponent,
     PasswordModule,
@@ -41,7 +48,7 @@ import { FormInputErrorComponent } from "../components/form-input-error/form-inp
     ReactiveFormsModule,
     FormsModule,
     CalendarModule,
-    RadioButtonModule
+    RadioButtonModule,
   ],
 })
 export class SharedFormModule {}

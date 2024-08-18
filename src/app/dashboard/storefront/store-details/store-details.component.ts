@@ -67,6 +67,7 @@ export class StoreDetailsComponent {
       this.storeService
         .addShippingMethod(this.shippingOptionsForm.value)
         .subscribe({
+          next: () => this.toggleModal(false),
           complete: () => this.isUpdatingStore.set(false),
         });
     } else {
@@ -90,5 +91,6 @@ export class StoreDetailsComponent {
 
   toggleModal(value: boolean) {
     this.showModal = value;
+    this.shippingOptionsForm.reset();
   }
 }

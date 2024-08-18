@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { StoreService } from '../../../services/store.service';
 
 @Component({
   selector: 'app-social-media',
@@ -9,7 +10,7 @@ export class SocialMediaComponent {
 
   socialLinks: { name: string, icon: string}[]
 
-  constructor () {
+  constructor (private storeService: StoreService) {
     this.socialLinks = [
       {
         name: 'x(twitter)',

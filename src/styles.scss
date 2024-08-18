@@ -61,6 +61,10 @@
     @apply font-poppins text-sm
   }
 
+  button {
+    @apply focus-visible:shadow-none focus-within:shadow-none
+  }
+
   .btn {
     @apply px-2 py-1 rounded-md min-h-10 flex items-center text-sm sm:px-1 sm:py-1;
   }

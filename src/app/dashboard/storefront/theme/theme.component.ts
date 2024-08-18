@@ -86,10 +86,9 @@ export class ThemeComponent {
     if (this.addBannerForm.valid) {
       this.updatingBanner.set(true);
       this.storeService.addSiteBanner(this.addBannerForm.value).subscribe({
-        next: () => this.addBannerForm.reset(),
+        next: () => this.toggleModal(false),
         complete: () => {
           this.updatingBanner.set(false);
-          this.toggleModal(false);
         },
       });
     } else {
@@ -98,10 +97,11 @@ export class ThemeComponent {
   }
 
   get storeBannersLength() {
-    return this.store()?.banners.length ?? 0
+    return this.store()?.banners.length ?? 0;
   }
 
   toggleModal(value: boolean) {
     this.showModal.set(value);
+    this.addBannerForm.reset();
   }
 }

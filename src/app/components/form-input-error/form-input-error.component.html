@@ -3,7 +3,7 @@
   class="text-red-500 text-xs"
 >
   <ng-container *ngFor="let errorKey of errorKeys">
-    <span *ngIf="control?.hasError(errorKey)">
+    <span *ngIf="control?.hasError(errorKey)" class="flex">
       {{ getErrorMessage(errorKey) }}
     </span>
   </ng-container>
