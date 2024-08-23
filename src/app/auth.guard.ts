@@ -18,11 +18,15 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
+
+
+     if(this.authService.user()) return true
+
     return this.authService.retrieveUserSession().pipe(
       map(() => !!this.authService.user()),
       catchError(() => {
         localStorage.removeItem('biggmall_token');
-        return of(this.router.createUrlTree(['/login']));
+        return of(this.router.createUrlTree(['/auth/login']));
       }),
     );
   }
