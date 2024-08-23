@@ -12,6 +12,7 @@ import { Store } from '../models/store.models';
   providedIn: 'root',
 })
 export class AuthService {
+  loading = signal<boolean>(false)
   user = signal<User | null>(null);
 
   constructor(
@@ -38,17 +39,24 @@ export class AuthService {
   }
 
   retrieveUserSession() {
+    this.loading.set(true)
     return this.apiService
       .get<SuccessHttpResponse<AuthResponse>>('/auth/retrieve-session', {})
       .pipe(
-        tap((response) =>
+        tap((response) => {
+
           this.handleAuthentication(
             response.data.user,
             response.data.store,
             response.data.token,
-          ),
+            )
+            this.loading.set(false)
+          }
         ),
-        catchError((error: HttpErrorResponse) => throwError(error.error)),
+        catchError((error: HttpErrorResponse) => {
+          this.loading.set(false)
+          return throwError(error.error);
+        }),
       );
   }
 

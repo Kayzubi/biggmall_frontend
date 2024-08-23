@@ -9,10 +9,10 @@ import { DashboardTheme, User } from '../models/auth.models';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
-export class DashboardComponent implements OnInit {
-  loading: boolean = false;
+export class DashboardComponent {
   themeOptions: MenuItem[];
   user = computed(() => this.authService.user());
+  loading = computed(() => this.authService.loading())
 
   constructor(private authService: AuthService) {
     this.themeOptions = [
@@ -43,15 +43,4 @@ export class DashboardComponent implements OnInit {
   }
 
   handleUpdateUserTheme(theme: DashboardTheme) {}
-
-  ngOnInit(): void {
-    if (!this.authService.user()) {
-      this.loading = true;
-
-      this.authService.retrieveUserSession().subscribe({
-        error: () => this.loading = false,
-        complete: () => this.loading = false
-      });
-    }
-  }
 }

@@ -15,11 +15,13 @@ import { inventoryRoutes } from './inventory/inventory.constants';
 import { orderRoutes } from './orders/orders.constants';
 import { CustomerComponent } from './customers/customer/customer.component';
 import { storefrontRoutes } from './storefront/storefront.constants';
+import { AuthGuard } from '../auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',

@@ -1,7 +1,3 @@
-<div *ngIf="loading; else mainContent">
-Loading...
-</div>
-<ng-template #mainContent>
 <main class="theme-{{ theme }} flex h-full md:flex-col overflow-auto ">
   <div class="siderbar w-[15%] bg-card border-r border-border md:hidden py-5">
     <app-sidebar />
@@ -52,6 +48,5 @@ Loading...
   </div>
   <app-confirm-delete-popup />
 </main>
-</ng-template>
 
 
