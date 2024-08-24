@@ -1,15 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, computed, signal } from '@angular/core';
+import { ProductService } from '../../../services/product.service';
+import { Product } from '../../../models/products.models';
+import { ToastService } from '../../../services/toast.service';
 
 @Component({
   selector: 'app-product-overview',
   templateUrl: './product-overview.component.html',
   styleUrl: './product-overview.component.scss'
 })
-export class ProductOverviewComponent {
-  products: any[]
+export class ProductOverviewComponent implements OnInit {
+  products = computed(() => this.productsService.products())
+  loading = signal<boolean>(false)
 
 
-  constructor () {
-    this.products = Array.from({ length: 5}).map((_, index) => index + 1)
+
+
+  constructor (private productsService: ProductService, private toast: ToastService) {
+  }
+
+  ngOnInit(): void {
+    if(!this.products().length) {
+       this.loading.set(true);
+       this.productsService.getStoreProducts().subscribe({
+         next: () => this.loading.set(false),
+         error: (err) => {
+           this.loading.set(false);
+           this.toast.error(err);
+         },
+       });
+    }
   }
 }

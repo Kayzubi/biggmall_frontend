@@ -1,10 +1,10 @@
 import { Injectable, signal } from '@angular/core';
 import { ApiService } from './api.service';
-import { SuccessHttpResponse } from '../types';
 import { Observable, catchError, tap, throwError } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Banner, Category, Coupon, ShippingOption, Store } from '../models/store.models';
-import { MessageService } from 'primeng/api';
+import { SuccessHttpResponse } from '../models/https.models';
+import { ToastService } from './toast.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +14,7 @@ export class StoreService {
 
   constructor(
     private api: ApiService,
-    private toast: MessageService,
+    private toast: ToastService,
   ) {}
 
   setStoreData(data: Store | null) {
@@ -44,18 +44,10 @@ export class StoreService {
     return this.api.patch<SuccessHttpResponse<Store>>('/store', data, {}).pipe(
       tap((response) => {
         this.setStoreData(response.data);
-        this.toast.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: response.message,
-        });
+        this.toast.success(response.message)
       }),
       catchError((error: HttpErrorResponse) => {
-        this.toast.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: error.error.message,
-        });
+        this.toast.error(error.error.message)
         return error.error;
       }),
     );
@@ -69,18 +61,10 @@ export class StoreService {
       .pipe(
         tap((response) => {
           this.setStoreData(response.data);
-          this.toast.add({
-            severity: 'success',
-            summary: 'Success',
-            detail: response.message,
-          });
+          this.toast.success(response.message);
         }),
         catchError((error: HttpErrorResponse) => {
-          this.toast.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: error.error.message,
-          });
+          this.toast.error(error.error.message)
           return error.error;
         }),
       );
@@ -94,18 +78,10 @@ export class StoreService {
       .pipe(
         tap((response) => {
           this.setStoreData(response.data);
-          this.toast.add({
-            severity: 'success',
-            summary: 'Success',
-            detail: response.message,
-          });
+          this.toast.success(response.message);
         }),
         catchError((error: HttpErrorResponse) => {
-          this.toast.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: error.error.message,
-          });
+          this.toast.error(error.error.message)
           return error.error;
         }),
       );
@@ -117,18 +93,10 @@ export class StoreService {
       .pipe(
         tap((response) => {
           this.setStoreData(response.data);
-          this.toast.add({
-            severity: 'success',
-            summary: 'Success',
-            detail: response.message,
-          });
+          this.toast.success(response.message);
         }),
         catchError((error: HttpErrorResponse) => {
-          this.toast.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: error.error.message,
-          });
+          this.toast.error(error.error.message)
           return error.error;
         }),
       );
@@ -140,18 +108,10 @@ export class StoreService {
       .pipe(
         tap((response) => {
           this.setStoreData(response.data);
-          this.toast.add({
-            severity: 'success',
-            summary: 'Success',
-            detail: response.message,
-          });
+          this.toast.success(response.message);
         }),
         catchError((error: HttpErrorResponse) => {
-          this.toast.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: error.error.message,
-          });
+          this.toast.error(error.error.message)
           return error.error;
         }),
       );
@@ -163,18 +123,10 @@ export class StoreService {
       .pipe(
         tap((response) => {
           this.setStoreData(response.data);
-          this.toast.add({
-            severity: 'success',
-            summary: 'Success',
-            detail: response.message,
-          });
+          this.toast.success(response.message);
         }),
         catchError((error: HttpErrorResponse) => {
-          this.toast.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: error.error.message,
-          });
+          this.toast.error(error.error.message)
           return error.error;
         }),
       );
@@ -186,18 +138,10 @@ export class StoreService {
       .pipe(
         tap((response) => {
           this.setStoreData(response.data);
-          this.toast.add({
-            severity: 'success',
-            summary: 'Success',
-            detail: response.message,
-          });
+          this.toast.success(response.message);
         }),
         catchError((error: HttpErrorResponse) => {
-          this.toast.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: error.error.message,
-          });
+          this.toast.error(error.error.message)
           return error.error;
         }),
       );
@@ -209,18 +153,10 @@ export class StoreService {
       .pipe(
         tap((response) => {
           this.setStoreData(response.data);
-          this.toast.add({
-            severity: 'success',
-            summary: 'Success',
-            detail: response.message,
-          });
+          this.toast.success(response.message);
         }),
         catchError((error: HttpErrorResponse) => {
-          this.toast.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: error.error.message,
-          });
+          this.toast.error(error.error.message)
           return error.error;
         }),
       );
@@ -232,18 +168,10 @@ export class StoreService {
       .pipe(
         tap((response) => {
           this.setStoreData(response.data);
-          this.toast.add({
-            severity: 'success',
-            summary: 'Success',
-            detail: response.message,
-          });
+          this.toast.success(response.message);
         }),
         catchError((error: HttpErrorResponse) => {
-          this.toast.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: error.error.message,
-          });
+          this.toast.error(error.error.message)
           return error.error;
         }),
       );

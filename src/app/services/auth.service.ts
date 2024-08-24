@@ -2,11 +2,11 @@
 import { Injectable, signal } from '@angular/core';
 import { ApiService } from './api.service';
 import { Observable, catchError, tap, throwError } from 'rxjs';
-import { SuccessHttpResponse } from '../types';
 import { AuthResponse, User } from '../models/auth.models';
 import { StoreService } from './store.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Store } from '../models/store.models';
+import { SuccessHttpResponse } from '../models/https.models';
 
 @Injectable({
   providedIn: 'root',

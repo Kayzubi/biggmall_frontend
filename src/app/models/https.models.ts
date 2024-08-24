@@ -1,4 +1,4 @@
-import { HttpContext, HttpHeaders, HttpParams } from "@angular/common/http";
+import { HttpContext, HttpHeaders, HttpParams } from '@angular/common/http';
 
 export interface Options {
   headers?:
@@ -28,15 +28,13 @@ export interface Options {
 }
 
 export interface SuccessHttpResponse<T> {
-  success: boolean
-  message: string
-  data: T
+  success: boolean;
+  message: string;
+  data: T;
 }
-
 
 export interface ErrorResponse {
   success: boolean;
-  status:  number;
+  status: number;
   message: string;
 }
-

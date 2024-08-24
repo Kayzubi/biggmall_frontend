@@ -2,13 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { ErrorResponse } from '../../types';
-import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { ErrorResponse } from '../../models/https.models';
+import { ToastService } from '../../services/toast.service';
 
 
 @Component({
@@ -24,7 +23,7 @@ export class LoginComponent {
   constructor(
     private auth: AuthService,
     private form: FormBuilder,
-    private toast: MessageService,
+    private toast: ToastService,
     private router: Router
   ) {
     this.logginIn = false;
@@ -44,21 +43,13 @@ export class LoginComponent {
         })
         .subscribe({
           next: (response) => {
-            this.toast.add({
-              severity: 'success',
-              summary: 'Success',
-              detail: response.message,
-            });
+            this.toast.success(response.message)
             localStorage.setItem('biggmall_login', this.loginForm.value.email);
             this.logginIn = false;
             this.router.navigate(['/dashboard'])
           },
           error: (err: ErrorResponse) => {
-            this.toast.add({
-              severity: 'error',
-              summary: 'Error',
-              detail: err.message,
-            });
+            this.toast.error(err.message);
             this.logginIn = false;
           },
         });
