@@ -1,0 +1,23 @@
+<div
+  class="rounded-lg border border-border flex flex-col overflow-hidden"
+>
+  <span class="bg-primary-light p-2 gap-2 flex justify-between items-center">
+    <small class="uppercase w-[20%]">Group name</small
+    ><small class="uppercase flex-auto ">Options</small>
+    <span class="w-[10%]"></span>
+  </span>
+  <span class="flex justify-between items-center gap-2 p-3">
+    <p class="w-[20%] truncate text-xs">
+      {{ variant.group_name }}
+    </p>
+    <small class="flex-auto truncate">
+      {{ buildVariants().join(",") }}
+    </small>
+     <span class="flex justify-end w-[10%]">
+      <button type="button" class="text-red-500 text-xs" (click)="handleDelete()">
+        Delete
+      </button>
+    </span>
+
+  </span>
+</div>

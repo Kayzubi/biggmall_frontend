@@ -14,7 +14,7 @@ export const inventoryRoutes: Route[] = [
   },
 
   {
-    path: 'id',
+    path: ':id',
     component: ProductDetailsComponent
   }
 ];

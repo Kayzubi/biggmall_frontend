@@ -30,4 +30,18 @@ export class ProductOverviewComponent implements OnInit {
        });
     }
   }
+
+  deleteProduct(id: string) {
+    this.loading.set(true)
+    this.productsService.deleteStoreProduct(id).subscribe({
+      next: () => {
+        this.toast.success('Product Deleted')
+        this.loading.set(false)
+      },
+      error: (err) => {
+        this.toast.error(err)
+        this.loading.set(false)
+      }
+    })
+  }
 }

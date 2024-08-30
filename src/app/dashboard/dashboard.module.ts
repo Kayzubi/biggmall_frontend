@@ -40,6 +40,7 @@ import { SocialMediaComponent } from './storefront/social-media/social-media.com
 import { BankAccountComponent } from './storefront/bank-account/bank-account.component';
 import { ThemeItemComponent } from './components/theme-item/theme-item.component';
 import { ShipppingOptionComponent } from './components/shippping-option/shippping-option.component';
+import { ProductVariantComponent } from './components/product-variant/product-variant.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { ShipppingOptionComponent } from './components/shippping-option/shipppin
     BankAccountComponent,
     ThemeItemComponent,
     ShipppingOptionComponent,
+    ProductVariantComponent,
   ],
   imports: [
     CommonModule,

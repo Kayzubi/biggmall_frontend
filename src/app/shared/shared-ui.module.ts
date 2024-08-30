@@ -51,6 +51,7 @@ import { DialogModule } from 'primeng/dialog';
 import { PopupComponent } from '../components/popup/popup.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmDeletePopupComponent } from '../components/confirm-delete-popup/confirm-delete-popup.component';
+import { LoaderComponent } from '../components/loader/loader.component';
 
 
 
@@ -62,6 +63,7 @@ import { ConfirmDeletePopupComponent } from '../components/confirm-delete-popup/
     TableComponent,
     PopupComponent,
     ConfirmDeletePopupComponent,
+    LoaderComponent
   ],
   imports: [
     ButtonModule,
@@ -124,6 +126,7 @@ import { ConfirmDeletePopupComponent } from '../components/confirm-delete-popup/
     PopupComponent,
     ChipModule,
     ConfirmDeletePopupComponent,
+    LoaderComponent
   ],
 })
 export class SharedUIModule {}

@@ -8,12 +8,13 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { authInterceptor } from './interceptors/auth.interceptor';
+import { SharedUIModule } from './shared/shared-ui.module';
 
 
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, ToastModule],
+  imports: [BrowserModule, AppRoutingModule, ToastModule, SharedUIModule],
   providers: [provideHttpClient(withInterceptors([authInterceptor])), provideAnimationsAsync(), MessageService, ConfirmationService],
   bootstrap: [AppComponent],
 })

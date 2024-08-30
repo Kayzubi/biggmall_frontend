@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ShippingOption } from '../../../models/store.models';
-import { ConfirmationService } from 'primeng/api';
-import { StoreService } from '../../../services/store.service';
+
 
 @Component({
   selector: 'app-shippping-option',
@@ -13,7 +12,6 @@ export class ShipppingOptionComponent {
   @Output() delete = new EventEmitter<string>()
 
   constructor(
-    private storeService: StoreService,
   ) {}
 
   handleDelete() {

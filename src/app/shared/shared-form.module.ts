@@ -14,6 +14,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { FileUploadModule } from 'primeng/fileupload';
 import { CalendarModule } from 'primeng/calendar';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 import { FormInputComponent } from '../components/shared/form-input/form-input.component';
 import { CommonModule } from "@angular/common";
@@ -49,6 +50,8 @@ import { FormInputErrorComponent } from "../components/form-input-error/form-inp
     FormsModule,
     CalendarModule,
     RadioButtonModule,
+    MultiSelectModule,
+    FloatLabelModule,
   ],
 })
 export class SharedFormModule {}
