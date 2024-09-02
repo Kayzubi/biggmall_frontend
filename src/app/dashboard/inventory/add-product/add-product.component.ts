@@ -55,8 +55,6 @@ export class AddProductComponent {
     return this.addProductForm.get('variants') as FormArray;
   }
 
-
-
   onSubmitNewVariant(data: Partial<Variant>) {
     this.addedVariants.push(this.fb.control(data));
     this.toggleModal(false);
