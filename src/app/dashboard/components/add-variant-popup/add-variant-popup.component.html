@@ -1,0 +1,65 @@
+<app-popup
+    [visible]="showModal()"
+    (showModal)="toggleModal($event)"
+    position="top"
+  >
+    <div class="flex-auto" heading>
+      <h2 class="font-medium">Add a Variant</h2>
+    </div>
+    <form [formGroup]="addVariantForm" (ngSubmit)="onSubmitNewVariant()" class="px-5 flex flex-col gap-4">
+      <app-form-input
+        label="Group name"
+        inputName="group_name"
+        description="Enter a group name for your variant. (e.g. size, color)"
+        [form]="addVariantForm"
+      >
+        <input pInputText id="name" class="text-sm" formControlName="group_name" />
+      </app-form-input>
+
+      <p class="font-medium text-primary">Options:</p>
+      <div class="flex flex-wrap items-center gap-2">
+
+        <p-chip
+          [label]="option.name"
+          [removable]="true"
+          styleClass=" bg-primary text-white text-xs"
+          *ngFor="let option of addedNewVariants.value; index as i"
+          (onRemove)="removeVariantOption(i)"
+        />
+      </div>
+
+      <div *ngIf="addVariantForm.get('options')?.errors?.['minLengthArray']" class=" text-xs text-red-500">
+        Group must contain at least 1 variant.
+      </div>
+
+      <div class="flex items-center justify-between gap-5 sm:flex-col sm:gap-2 sm:items-start">
+        <app-form-input label="Option name" inputName="name" class="flex-auto sm:w-full">
+          <input pInputText id="name" class="text-sm" formControlName="option_name" />
+        </app-form-input>
+        <app-form-input label="Quantity" inputName="quantity" class="sm:w-full">
+             <p-inputNumber
+              [min]="0"
+              inputId="option_quantity"
+              formControlName="option_quantity"
+              styleClass="sm:w-full"
+              class="sm:w-full"
+            />
+        </app-form-input>
+        <app-button
+          label="Add Option"
+          styleClass="flex-row-reverse gap-1 justify-center text-primary"
+          size="normal"
+          icon="ionAddOutline"
+          (onClick)="addNewVarianntOption()"
+        />
+      </div>
+      <app-button
+        label="Save"
+        type="submit"
+        styleClass="btn-primary h-8 w-full justify-center"
+        size="normal"
+        [loading]="loading"
+      />
+    </form>
+
+  </app-popup>

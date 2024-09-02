@@ -41,6 +41,7 @@ import { BankAccountComponent } from './storefront/bank-account/bank-account.com
 import { ThemeItemComponent } from './components/theme-item/theme-item.component';
 import { ShipppingOptionComponent } from './components/shippping-option/shippping-option.component';
 import { ProductVariantComponent } from './components/product-variant/product-variant.component';
+import { AddVariantPopupComponent } from './components/add-variant-popup/add-variant-popup.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { ProductVariantComponent } from './components/product-variant/product-va
     ThemeItemComponent,
     ShipppingOptionComponent,
     ProductVariantComponent,
+    AddVariantPopupComponent,
   ],
   imports: [
     CommonModule,

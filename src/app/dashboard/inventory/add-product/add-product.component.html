@@ -1,5 +1,9 @@
 <app-page-header [showBackButton]="true" header="Add New Product" />
-<section class="flex gap-5 md:flex-col px-7 sm:px-0">
+<form
+  class="flex gap-5 md:flex-col px-7 sm:px-0"
+  [formGroup]="addProductForm"
+  (ngSubmit)="addNewProduct()"
+>
   <div class="w-[60%] md:w-full flex flex-col gap-5">
     <div class="min-h-[400px]">
       <app-card>
@@ -9,8 +13,9 @@
             label="Product name"
             inputName="name"
             description="Enter the name of your product"
+            [form]="addProductForm"
           >
-            <input pInputText id="name" />
+            <input pInputText formControlName="name" />
           </app-form-input>
           <app-form-input
             label="Product description"
@@ -23,15 +28,19 @@
               class="p-3"
               pInputTextarea
               [autoResize]="true"
+              formControlName="description"
             ></textarea>
           </app-form-input>
-          <p-dropdown
-            styleClass=" w-full border border-border bg-transparent"
-            panelStyleClass="bg-background text-text"
-            [options]="[]"
-            optionLabel="name"
-            placeholder="Select a Category"
-          />
+          <p-floatLabel>
+            <p-multiSelect
+              styleClass=" w-full border border-border bg-transparent"
+              panelStyleClass="bg-background text-text"
+              [options]="categories"
+              optionLabel="name"
+              formControlName="categories"
+            />
+            <label for="">Select Categories</label>
+          </p-floatLabel>
         </div>
       </app-card>
     </div>
@@ -39,7 +48,14 @@
     <app-card>
       <h3 class="font-medium text-lg">Pricing</h3>
 
-      <app-form-input label="Product Price" inputName="price">
+      <app-form-input
+        label="Product Price"
+        inputName="price"
+        [form]="addProductForm"
+        [errorMessages]="{
+          min: 'Cannot be less than NGN100.00',
+        }"
+      >
         <p-inputNumber
           [min]="0"
           inputId="price"
@@ -48,24 +64,35 @@
           currency="NGN"
           styleClass=" w-full"
           locale="en-US"
+          formControlName="price"
         />
       </app-form-input>
-      <div class="flex gap-5 py-3 items-center mt-4 px-3">
+
+      <div
+        class="flex gap-5 py-3 items-center mt-4 px-3"
+        formGroupName="on_sale"
+      >
         <p class="text-sm">On Sale?</p>
         <p-inputSwitch
           styleClass="focus-visible:shadow-none focus-within:shadow-none"
-          [(ngModel)]="onSale"
+          formControlName="is_on_sale"
         />
       </div>
-      <app-form-input *ngIf="onSale" label="Sale Price" inputName="price">
+
+      <app-form-input
+        *ngIf="addProductForm.controls['on_sale'].value.is_on_sale"
+        label="Sale Price"
+        inputName="sale_price"
+        formGroupName="on_sale"
+      >
         <p-inputNumber
           [min]="0"
-          inputId="price"
           mode="currency"
           class="w-full"
           currency="NGN"
           styleClass=" w-full"
           locale="en-US"
+          formArrayName="sale_price"
         />
       </app-form-input>
     </app-card>
@@ -148,7 +175,10 @@
       <app-card>
         <h3 class="font-medium text-lg">Inventory details</h3>
 
-        <div class="flex items-center gap-5 py-5">
+        <div
+          class="flex items-center gap-5 py-5"
+          *ngIf="!addProductForm.controls['has_variants'].value"
+        >
           <p>Available Quantity:</p>
 
           <p-inputNumber
@@ -156,14 +186,15 @@
             inputId="quantity"
             class="flex-auto border border-border h-10 rounded-md"
             styleClass=" w-full px-2"
+            formControlName="available_quantity"
           />
         </div>
 
         <div class="flex gap-5 py-3 items-center">
           <p class="text-sm mb-1">Has Variants?</p>
-          <p-inputSwitch [(ngModel)]="hasVariants" />
+          <p-inputSwitch formControlName="has_variants" />
         </div>
-        <div *ngIf="hasVariants" class="py-3">
+        <div *ngIf="addProductForm.controls['has_variants'].value" class="py-3">
           <span class="flex items-center justify-between px-2">
             <p class="font-medium">Variants</p>
             <app-button
@@ -174,21 +205,20 @@
             />
           </span>
           <div class="mt-5">
+            <ng-template #noVariants>
+              <p class="flex items-center justify-center text-xs">
+                No Variants added
+              </p>
+            </ng-template>
             <div
-              class="rounded-lg border border-border flex flex-col overflow-hidden"
+              *ngIf="addedVariants.value.length; else noVariants"
+              class="flex flex-col gap-2"
             >
-              <span
-                class="bg-primary-light p-2 flex justify-between items-center"
-              >
-                <small class="uppercase">Group name</small
-                ><small class="uppercase">Options</small>
-              </span>
-              <span class="flex justify-between items-center gap-3 p-3">
-                <p class="flex-auto truncate text-xs">Base Surface</p>
-                <small class="flex-auto truncate flex justify-end">
-                  PVC,Bamboo,Beech,Cherry,White,Black
-                </small>
-              </span>
+              <app-product-variant
+                *ngFor="let variant of addedVariants.value; let i = index"
+                [variant]="variant"
+                (deleteVariant)="deletAddedVariant(i)"
+              />
             </div>
           </div>
         </div>
@@ -200,10 +230,13 @@
           label="Save"
           styleClass="btn-primary w-full h-11 justify-center"
           size="normal"
+          type="submit"
+          [loading]="loading()"
         />
         <div class="flex gap-5 py-3 items-center mt-4 px-3">
           <p-inputSwitch
             styleClass="focus-visible:shadow-none focus-within:shadow-none "
+            formControlName="active"
           />
           <p class="text-sm mb-1">Active</p>
         </div>
@@ -211,68 +244,6 @@
       </app-card>
     </div>
   </div>
-</section>
+</form>
 
-<app-popup
-  [visible]="showModal"
-  (showModal)="toggleModal($event)"
-  position="top"
->
-  <div class="flex-auto" heading>
-    <h2 class="font-medium">Add a Variant</h2>
-  </div>
-  <div class="px-5 flex flex-col gap-4">
-    <app-form-input
-      label="Group name"
-      inputName="name"
-      description="Enter a group name for your variant. (e.g. size, color)"
-    >
-      <input pInputText id="name" class="text-sm" />
-    </app-form-input>
-
-    <p class="font-medium text-primary">Options:</p>
-    <div class="flex flex-wrap items-center gap-2">
-      <p-chip
-        label="PVC"
-        [removable]="true"
-        styleClass=" bg-primary text-white text-xs"
-      />
-      <p-chip
-        label="Bamboo"
-        [removable]="true"
-        styleClass=" bg-primary text-white text-xs"
-      />
-    </div>
-
-    <div class="flex items-center justify-between gap-5">
-      <app-form-input label="Option name" inputName="name" class="flex-auto">
-        <input pInputText id="name" class="text-sm" />
-      </app-form-input>
-      <app-form-input label="Quantity" inputName="quantity">
-        <input type="number" />
-      </app-form-input>
-    </div>
-    <div class="flex items-center justify-end">
-      <app-button
-        label="Add Option"
-        styleClass="flex-row-reverse gap-1 justify-center text-primary"
-        size="normal"
-        icon="ionAddOutline"
-      />
-    </div>
-  </div>
-  <div footer class="flex justify-end gap-4 items-center py-2 mt-5">
-    <app-button
-      label="Cancel"
-      styleClass="  h-8 w-14 justify-center text-red-400"
-      size="normal"
-      (onClick)="toggleModal(false)"
-    />
-    <app-button
-      label="Save"
-      styleClass="btn-primary h-8 w-14 justify-center"
-      size="normal"
-      (onClick)="toggleModal(false)"
-    />
-  </div>
-</app-popup>
+<app-add-variant-popup (handleAddVariant)="onSubmitNewVariant($event)" />
