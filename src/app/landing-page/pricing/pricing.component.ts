@@ -29,7 +29,7 @@ export class PricingComponent {
       buttonText: 'Get Started with Plus',
       price: { anual: 8000, monthly: 10000 },
       features: [
-        'Everythin in Free',
+        'Everything in Free',
         'Lorem ipsum dolor sit amet.',
         'Lorem ipsum dolor sit amet.',
         'Lorem ipsum dolor sit amet.',
@@ -43,7 +43,7 @@ export class PricingComponent {
       buttonText: 'Request Demo',
       price: { anual: 16000, monthly: 20000 },
       features: [
-        'Everythin in Plus',
+        'Everything in Plus',
         'Lorem ipsum dolor sit amet.',
         'Lorem ipsum dolor sit amet.',
         'Lorem ipsum dolor sit amet.',

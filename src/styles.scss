@@ -144,7 +144,7 @@ input, textarea {
  }
 
  .p-toast-message-content {
-  @apply bg-background border border-border text-black h-max
+  @apply bg-card text-text border border-border text-black h-max py-2
  }
 
  .p-toast-icon-close {
