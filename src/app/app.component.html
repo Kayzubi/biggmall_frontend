@@ -4,5 +4,14 @@
 <div class=" h-dvh">
   <router-outlet />
 </div>
-<p-toast />
+<p-toast #toast position="top-center">
+  <ng-template let-message pTemplate="message">
+    <div class=" flex-auto flex items-center gap-3 ">
+      <i class="pi pi-check-circle custom-icon text-green-600" *ngIf="message.severity === 'success'"></i>
+      <i class="pi pi-exclamation-triangle custom-icon text-yellow-500" *ngIf="message.severity === 'warn'"></i>
+      <i class="pi pi-times-circle custom-icon text-red-600" *ngIf="message.severity === 'error'"></i>
+        <p class=" font-semibold flex-auto text-center">{{ message.detail }}</p>
+    </div>
+  </ng-template>
+</p-toast>
 

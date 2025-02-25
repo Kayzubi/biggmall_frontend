@@ -7,28 +7,28 @@ import { ConfirmationService } from 'primeng/api';
 @Component({
   selector: 'app-product-overview',
   templateUrl: './product-overview.component.html',
-  styleUrl: './product-overview.component.scss'
+  styleUrl: './product-overview.component.scss',
 })
 export class ProductOverviewComponent implements OnInit {
-  products = computed(() => this.productsService.products())
-  loading = signal<boolean>(false)
+  products = computed(() => this.productsService.products());
+  loading = signal<boolean>(false);
 
-
-
-
-  constructor (private productsService: ProductService, private toast: ToastService, private connfirmation: ConfirmationService) {
-  }
+  constructor(
+    private productsService: ProductService,
+    private toast: ToastService,
+    private connfirmation: ConfirmationService,
+  ) {}
 
   ngOnInit(): void {
-    if(!this.products().length) {
-       this.loading.set(true);
-       this.productsService.getStoreProducts().subscribe({
-         next: () => this.loading.set(false),
-         error: (err) => {
-           this.loading.set(false);
-           this.toast.error(err);
-         },
-       });
+    if (!this.products().length) {
+      this.loading.set(true);
+      this.productsService.getStoreProducts().subscribe({
+        next: () => this.loading.set(false),
+        error: (err) => {
+          this.loading.set(false);
+          this.toast.error(err);
+        },
+      });
     }
   }
 
@@ -49,8 +49,7 @@ export class ProductOverviewComponent implements OnInit {
           },
         });
       },
-      reject: () => {}
-    })
-
+      reject: () => {},
+    });
   }
 }

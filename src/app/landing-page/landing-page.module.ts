@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AccordionModule } from 'primeng/accordion';
 import { AnimateOnScrollModule } from 'primeng/animateonscroll';
 
-
+import { InputSwitchModule } from 'primeng/inputswitch';
 import { LandingPageRoutingModule } from './landing-page-routing.module';
 import { LandingPageComponent } from './landing-page.component';
 import { SharedUIModule } from '../shared/shared-ui.module';
@@ -17,6 +17,9 @@ import { FeaturesComponent } from './features/features.component';
 import { HowItWorksComponent } from './how-it-works/how-it-works.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { PageBannerComponent } from './components/page-banner/page-banner.component';
+import { PricingComponent } from './pricing/pricing.component';
+import { PricingItemComponent } from './components/pricing-item/pricing-item.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,11 +34,15 @@ import { PageBannerComponent } from './components/page-banner/page-banner.compon
     FeaturesComponent,
     HowItWorksComponent,
     PageBannerComponent,
+    PricingComponent,
+    PricingItemComponent,
   ],
   imports: [
     CommonModule,
+    FormsModule,
     LandingPageRoutingModule,
     SharedUIModule,
+    InputSwitchModule,
     AccordionModule,
     AnimateOnScrollModule,
   ],

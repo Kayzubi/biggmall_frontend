@@ -1,25 +1,25 @@
 <nav class=" h-28 flex items-center justify-center bg-transparent z-[1102] relative">
-  <div class="max-w-7xl w-full mx-auto flex items-center justify-between">
+  <div class="max-w-7xl gap-5 w-full mx-auto flex items-center justify-between">
     <a routerLink="/" class="w-28">
       <img src="assets/Biggmall logo main.png" alt="biggmall logo" />
     </a>
 
-    <div class="flex gap-4 items-center font-medium md:hidden">
+    <div class="flex justify-center gap-4 items-center font-medium md:hidden flex-auto h-full">
       <a routerLinkActive="text-primary" routerLink="features">Features</a>
       <a routerLinkActive="text-primary" routerLink="how-it-works"
         >How it works</a
       >
-      <a routerLinkActive="text-primary" routerLink="/pricing">Resources</a>
-      <a routerLinkActive="text-primary" routerLink="/resources">Pricing</a>
+      <a routerLinkActive="text-primary" routerLink="/pricing">Pricing</a>
+      <a routerLinkActive="text-primary" routerLink="/resources">Resources</a>
 
     </div>
 
     <div class="flex gap-4 items-center font-medium md:hidden">
-       <a class="text-primary font-gilroy-medium btn" routerLink="/auth/login">
+       <a class="text-primary !px-5 font-gilroy-medium btn uppercase border border-primary !text-sm" routerLink="/auth/login">
         Log in
       </a>
-      <a routerLink="/auth/signup" class="bg-primary text-white btn">
-        Create Account
+      <a routerLink="/auth/signup" class="bg-primary text-white !text-sm  btn uppercase  !px-5">
+        Get started
       </a>
     </div>
     <p-button (onClick)="sidebarOpen = true" icon="pi pi-align-right" class=" hidden md:flex text-lg" />

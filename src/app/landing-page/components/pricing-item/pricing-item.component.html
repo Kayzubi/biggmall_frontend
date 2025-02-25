@@ -1,0 +1,44 @@
+<div class="min-h-[400px] h-max border-border border rounded-lg py-5">
+  <div class="flex flex-col gap-5 px-5">
+    <h4 class="font-medium text-lg flex items-center">
+      {{ pricing.title }}
+      <span
+        class="ml-auto text-xs px-2 rounded-full py-1 font-light bg-primary text-white"
+        *ngIf="pricing.popular"
+      >
+        Most Popular</span
+      >
+    </h4>
+
+    <div>
+      <h2 *ngIf="billAnually" class=" text-3xl sm:text-2xl font-semibold">
+        {{ pricing.price.anual | currency: "₦" }}<span class="text-xs font-medium italic">/month, billed annually</span>
+      </h2>
+      <h2 *ngIf="!billAnually" class=" text-3xl sm:text-2xl font-semibold">
+        {{ pricing.price.monthly | currency: "₦" }}<span class="text-xs  font-medium italic">/month</span>
+      </h2>
+      <small class=" text-[#999999] text-sm">{{ pricing.description }}</small>
+    </div>
+
+    <button
+      pButton
+      [class.bg-primary]="pricing.popular"
+      [class.text-white]="pricing.popular"
+      class="h-10 border uppercase border-primary text-primary flex items-center justify-center hover:text-white hover:bg-primary"
+    >
+      {{ pricing.buttonText }}
+    </button>
+  </div>
+  <span class="h-[1px] border-t border-t-gray-00 block my-5"></span>
+
+  <ul class="px-5 flex flex-col gap-5">
+    <h4>FEATURES</h4>
+    <li
+      *ngFor="let feature of pricing.features"
+      class="flex items-center gap-3"
+    >
+      <i class="pi pi-check-circle custom-icon text-primary text-lg"></i>
+      <span>{{ feature }}</span>
+    </li>
+  </ul>
+</div>

@@ -4,6 +4,7 @@ import { LandingPageComponent } from './landing-page.component';
 import { HomeComponent } from './home/home.component';
 import { FeaturesComponent } from './features/features.component';
 import { HowItWorksComponent } from './how-it-works/how-it-works.component';
+import { PricingComponent } from './pricing/pricing.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
         path: 'how-it-works',
         component: HowItWorksComponent,
       },
+      {
+        path: 'pricing',
+        component: PricingComponent
+      }
     ],
   },
 ];

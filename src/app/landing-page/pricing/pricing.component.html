@@ -1,0 +1,17 @@
+<app-page-banner title="Pricing"  />
+
+<section class="py-24 md:py-10 min-h-dvh">
+  <div class=" container">
+    <h1 class=" text-5xl sm:text-2xl font-light text-center mb-3">Choose a plan</h1>
+    <small class=" block text-[#999999] text-center text-lg">14 days unlimited free trial. No contract or credit card required.</small>
+  <div class=" flex items-start justify-center gap-5 mt-10">
+    <p>Bill Monthly</p><p-inputSwitch [(ngModel)]="isAnnual" /><p>Bill Yearly <span class="text-xs italic" >(Save 20%)</span></p>
+  </div>
+  <div class=" grid grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-8 py-10">
+    <app-pricing-item *ngFor="let pricing of pricingItems" [billAnually]="isAnnual" [pricing]="pricing" />
+
+  </div>
+  </div>
+
+
+</section>

@@ -7,5 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class PageBannerComponent {
   @Input({ required: true }) title!: string
+  @Input() description?: string
 
 }

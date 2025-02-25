@@ -143,3 +143,10 @@ input, textarea {
     }
  }
 
+ .p-toast-message-content {
+  @apply bg-background border border-border text-black h-max
+ }
+
+ .p-toast-icon-close {
+  @apply hidden
+ }
